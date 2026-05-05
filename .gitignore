@@ -1,0 +1,31 @@
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+
+# minted / pygments cache
+_minted/
+_minted*/
+*.pyg
+
+# Generated PDFs, except the final template preview
+*.pdf
+!reference_reconstruction.pdf
+
+# Editor and OS noise
+.DS_Store
+.idea/
+.vscode/
+*.swp
