@@ -1,0 +1,678 @@
+\documentclass[12pt,aspectratio=43]{beamer}
+
+% Jilin University Mathematics School thesis-defense Beamer template.
+
+\usepackage[fontset=none]{ctex}
+\usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+
+\usetheme{default}
+
+% ---------- Local fonts ----------
+\setCJKmainfont[Path=fonts/,BoldFont=SimHei.TTF]{SimKai.TTF}
+\setCJKsansfont[Path=fonts/]{SimKai.TTF}
+\setCJKmonofont[Path=fonts/]{SimSun.TTC}
+\newCJKfontfamily\JLUKai[Path=fonts/,BoldFont=SimHei.TTF]{SimKai.TTF}
+\newCJKfontfamily\JLUHei[Path=fonts/]{SimHei.TTF}
+\newcommand{\JLUEmph}[1]{{\JLUHei #1}}
+
+% ---------- Thesis information ----------
+\newcommand{\ThesisTitle}{毕业论文答辩演示文稿模板}
+\newcommand{\ThesisSubtitle}{基于论文结构组织的 Beamer 模板}
+\newcommand{\ThesisShortTitle}{毕业论文答辩}
+\newcommand{\AuthorName}{答辩人姓名}
+\newcommand{\StudentID}{学号}
+\newcommand{\SupervisorName}{导师姓名}
+\newcommand{\DepartmentName}{吉林大学数学学院}
+\newcommand{\DepartmentShortName}{吉林大学数学学院}
+\newcommand{\DepartmentEnglishName}{School of Mathematics Jilin University}
+\newcommand{\MajorName}{专业名称}
+\newcommand{\DefenseDate}{答辩日期}
+
+\title[\ThesisShortTitle]{\ThesisTitle}
+\author[\AuthorName]{\AuthorName}
+\institute[\DepartmentName]{\DepartmentName}
+\date[\DefenseDate]{\DefenseDate}
+
+% ---------- Colors sampled from the reference PDF ----------
+\definecolor{JLUBlack}{HTML}{000000}
+\definecolor{JLUBlue}{RGB}{21,71,166}
+\definecolor{JLUTopNavy}{RGB}{8,33,82}
+\definecolor{JLUTitleBlue}{RGB}{19,64,150}
+\definecolor{JLUBlockBody}{RGB}{231,235,242}
+\definecolor{JLUBlockLine}{RGB}{63,105,183}
+\definecolor{JLULightBlue}{RGB}{238,244,252}
+\definecolor{JLUNav}{RGB}{193,206,231}
+
+% ---------- Beamer base style ----------
+\setbeamersize{text margin left=0.68cm,text margin right=0.68cm}
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{structure}{fg=JLUBlue}
+\setbeamercolor{frametitle}{fg=white,bg=JLUTitleBlue}
+\setbeamercolor{frametitle right}{fg=white,bg=JLUBlack}
+\setbeamercolor{block title}{fg=white,bg=JLUTitleBlue}
+\setbeamercolor{block body}{fg=black,bg=JLUBlockBody}
+\setbeamercolor{alerted text}{fg=JLUBlue}
+\setbeamercolor{section in head/foot}{fg=white,bg=JLUBlack}
+\setbeamercolor{section in head/foot shaded}{fg=white!52,bg=JLUBlack}
+\setbeamercolor{subsection in head/foot}{fg=white,bg=JLUBlue}
+\setbeamercolor{subsection in head/foot shaded}{fg=white!62,bg=JLUBlue}
+\setbeamercolor{author in head/foot}{fg=white,bg=JLUTopNavy}
+\setbeamercolor{title in head/foot}{fg=white,bg=JLUBlue}
+\setbeamercolor{date in head/foot}{fg=white,bg=JLUTitleBlue}
+\setbeamercolor{institute in head/foot}{fg=white,bg=JLUBlue}
+\setbeamercolor{headline in head/foot}{fg=white,bg=}
+
+\setbeamerfont{frametitle}{family=\JLUKai,size=\Large}
+\setbeamerfont{framesubtitle}{family=\JLUKai,size=\normalsize}
+\setbeamerfont{block title}{family=\JLUKai,size=\normalsize}
+\setbeamerfont{block body}{family=\JLUKai,size=\normalsize}
+\setbeamerfont{normal text}{family=\JLUKai,size=\normalsize}
+\setbeamerfont{section in toc}{family=\JLUKai,size=\large}
+\setbeamerfont{subsection in toc}{family=\JLUKai,size=\normalsize}
+\setbeamerfont{section in head/foot}{family=\JLUKai,size=\fontsize{5.5}{6.2}\selectfont}
+\setbeamerfont{subsection in head/foot}{family=\JLUKai,size=\fontsize{5.2}{5.8}\selectfont}
+\setbeamerfont{institute in head/foot}{family=\JLUKai,size=\fontsize{6.2}{6.8}\selectfont}
+\setbeamerfont{author in head/foot}{family=\JLUKai,size=\scriptsize}
+\setbeamerfont{title in head/foot}{family=\JLUKai,size=\scriptsize}
+\setbeamerfont{date in head/foot}{family=\JLUKai,size=\scriptsize}
+
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  backgroundcolor=\color{JLULightBlue},
+  keywordstyle=\bfseries\color{JLUBlue},
+  commentstyle=\itshape\color{black!48},
+  stringstyle=\color{JLUBlue!72!black},
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  frame=single,
+  rulecolor=\color{JLUBlockLine},
+  framerule=.35pt,
+  framesep=4pt,
+  numbers=left,
+  numbersep=6pt,
+  numberstyle=\tiny\color{black!45},
+  breaklines=true,
+  xleftmargin=1.2em,
+  xrightmargin=.3em
+}
+
+\newcommand{\JLULogo}{%
+  \raisebox{\dimexpr-.5\height+.42ex\relax}{\includegraphics[height=\JLUHeadlineHeight]{assets/jlu_math_logo_white.png}}%
+}
+
+\newlength{\JLUHeadlineHeight}
+\setlength{\JLUHeadlineHeight}{.64cm}
+\newlength{\JLUFrameTitleHeight}
+\setlength{\JLUFrameTitleHeight}{.72cm}
+\newlength{\JLUFrameTitleBottom}
+\setlength{\JLUFrameTitleBottom}{\dimexpr\JLUHeadlineHeight+\JLUFrameTitleHeight\relax}
+\newlength{\JLUFrameTitleCenter}
+\setlength{\JLUFrameTitleCenter}{\dimexpr\JLUHeadlineHeight+.5\JLUFrameTitleHeight\relax}
+\pgfdeclarehorizontalshading{jlu@headlineshade}{\JLUHeadlineHeight}{%
+  color(0pt)=(JLUTopNavy);
+  color(.76\paperwidth)=(JLUBlue);
+  color(\paperwidth)=(JLUBlue)}
+
+% ---------- Headline and footline, following the ZJU split/navigation style ----------
+\setbeamertemplate{headline}{%
+  \leavevmode%
+  \begin{tikzpicture}[remember picture,overlay]
+    \path
+      (current page.north west)
+      rectangle
+      ([yshift=-\JLUHeadlineHeight]current page.north east);
+    \pgftext[at=\pgfpointanchor{current page}{north west},left,top]{\pgfuseshading{jlu@headlineshade}}%
+    \fill[JLUBlue!70!JLUTopNavy,opacity=.72]
+      ([xshift=.755\paperwidth]current page.north west)
+      -- ([xshift=.79\paperwidth]current page.north west)
+      -- ([xshift=.762\paperwidth,yshift=-\JLUHeadlineHeight]current page.north west)
+      -- ([xshift=.727\paperwidth,yshift=-\JLUHeadlineHeight]current page.north west)
+      -- cycle;
+  \end{tikzpicture}%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.76\paperwidth,ht=\JLUHeadlineHeight,dp=0pt,leftskip=.18cm,rightskip=.10cm]{headline in head/foot}%
+      \vbox to \JLUHeadlineHeight{\vfil%
+        \ifnum\value{section}=0
+          \hbox to \dimexpr.76\paperwidth-.28cm\relax{%
+            \usebeamerfont{section in head/foot}\color{white}\insertshorttitle\hfil}%
+        \else
+          {\color{white}\insertsectionnavigationhorizontal{\dimexpr.76\paperwidth-.28cm\relax}{\hskip0pt plus1filll}{}}%
+        \fi%
+      \vfil}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.24\paperwidth,ht=\JLUHeadlineHeight,dp=0pt,center]{headline in head/foot}%
+      \vbox to \JLUHeadlineHeight{\vfil%
+        \hbox to .24\paperwidth{%
+          \hfil\usebeamerfont{institute in head/foot}\DepartmentShortName\hspace{.13cm}\JLULogo\hfil}%
+      \vfil}%
+    \end{beamercolorbox}%
+  }%
+}
+
+% ---------- Frame title ----------
+\makeatletter
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[JLUTitleBlue]
+      ([yshift=-\JLUHeadlineHeight]current page.north west)
+      rectangle
+      ([yshift=-\JLUFrameTitleBottom]current page.north east);
+    \node[
+      anchor=west,
+      text=white,
+      font=\JLUKai\Large
+    ] at ([xshift=.34cm,yshift=-\JLUFrameTitleCenter]current page.north west) {%
+      \insertframetitle%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+        \hspace{.18cm}{\color{white!62}\rule[-.2ex]{.05em}{1.7ex}}\hspace{.15cm}%
+        {\usebeamerfont{framesubtitle}\insertframesubtitle}%
+      \fi%
+    };
+  \end{tikzpicture}%
+  \vspace*{\JLUFrameTitleHeight}%
+}
+\makeatother
+
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.34\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertshortauthor%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.22\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{date in head/foot}\insertshortdate%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.36\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.08\paperwidth,ht=2.25ex,dp=1ex,right]{title in head/foot}%
+      \usebeamerfont{date in head/foot}\insertframenumber{} / \inserttotalframenumber\hspace*{.8ex}%
+    \end{beamercolorbox}%
+  }%
+}
+\setbeamertemplate{navigation symbols}{}
+
+% ---------- Blocks and lists ----------
+\tcbset{
+  jlu beamer block/.style={
+    enhanced,
+    colback=JLUBlockBody,
+    colbacktitle=JLUBlockBody,
+    colframe=JLUBlockLine,
+    boxrule=.45pt,
+    leftrule=2.2pt,
+    arc=1mm,
+    boxsep=0pt,
+    left=1.6mm,
+    right=1.8mm,
+    top=.9mm,
+    bottom=1.2mm,
+    toptitle=.45mm,
+    bottomtitle=.45mm,
+    titlerule=.3pt,
+    before skip=.7ex,
+    after skip=.9ex,
+    fonttitle=\JLUKai\bfseries,
+    coltitle=JLUTitleBlue,
+    title style={draw=none,fill=JLUBlockBody}
+  }
+}
+\setbeamertemplate{block begin}{%
+  \begin{tcolorbox}[jlu beamer block,title=\insertblocktitle]%
+}
+\setbeamertemplate{block end}{%
+  \end{tcolorbox}%
+}
+\setbeamertemplate{itemize item}{\color{JLUBlue}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{black}$\bullet$}
+\setbeamertemplate{enumerate item}{%
+  \tikz[baseline=(n.base)]\node[circle,fill=JLUBlue,text=white,inner sep=1.2pt,font=\scriptsize] (n) {\insertenumlabel};%
+}
+
+% ---------- Helper pages ----------
+\newcommand{\JLUChapterPage}[2]{%
+  \begin{frame}[plain]
+    \begin{tikzpicture}[remember picture,overlay]
+      \fill[JLULightBlue] (current page.south west) rectangle (current page.north east);
+      \fill[JLUBlue]
+        ([yshift=-2.45cm]current page.north west)
+        rectangle
+        ([yshift=-4.22cm]current page.north east);
+      \fill[JLUTopNavy]
+        ([xshift=.72\paperwidth,yshift=-2.45cm]current page.north west)
+        -- ([xshift=.82\paperwidth,yshift=-2.45cm]current page.north west)
+        -- ([xshift=.72\paperwidth,yshift=-4.22cm]current page.north west)
+        -- ([xshift=.62\paperwidth,yshift=-4.22cm]current page.north west)
+        -- cycle;
+      \node[
+        anchor=west,
+        text=white,
+        font=\JLUKai\Large
+      ] at ([xshift=.75cm,yshift=-2.88cm]current page.north west) {#1};
+      \node[
+        anchor=west,
+        text=white,
+        text width=.82\paperwidth,
+        font=\JLUKai\fontsize{23}{25}\selectfont
+      ] at ([xshift=.75cm,yshift=-3.73cm]current page.north west) {#2};
+      \node[
+        anchor=south east,
+        text=JLUBlue!32,
+        font=\JLUKai\fontsize{12}{14}\selectfont
+      ] at ([xshift=-.55cm,yshift=.55cm]current page.south east) {\DepartmentEnglishName};
+    \end{tikzpicture}
+  \end{frame}
+}
+
+\newcommand{\JLUFigurePlaceholder}[1]{%
+  \begin{center}
+    \begin{tikzpicture}
+      \draw[JLUBlue,rounded corners=3pt,line width=.5pt]
+        (0,0) rectangle (.78\textwidth,3.0cm);
+      \node[align=center,text=JLUBlue,font=\JLUKai\small]
+        at (.39\textwidth,1.5cm) {#1};
+    \end{tikzpicture}
+  \end{center}
+}
+
+\AtBeginSection[]{
+  \JLUChapterPage{第 \insertsectionnumber 部分}{\insertsection}
+}
+
+% ---------- Document ----------
+\begin{document}
+
+\begin{frame}[plain]
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[JLULightBlue] (current page.south west) rectangle (current page.north east);
+    \fill[JLUBlue]
+      ([yshift=-2.18cm]current page.north west)
+      rectangle
+      ([yshift=-4.55cm]current page.north east);
+    \fill[JLUTopNavy]
+      ([xshift=.73\paperwidth,yshift=-2.18cm]current page.north west)
+      -- ([xshift=.86\paperwidth,yshift=-2.18cm]current page.north west)
+      -- ([xshift=.76\paperwidth,yshift=-4.55cm]current page.north west)
+      -- ([xshift=.63\paperwidth,yshift=-4.55cm]current page.north west)
+      -- cycle;
+    \node[
+      anchor=west,
+      inner sep=0pt,
+      outer sep=0pt
+    ] (jlu-title-logo) at ([xshift=.65cm,yshift=-2.72cm]current page.north west)
+      {\includegraphics[height=.60cm]{assets/jlu_math_logo_white.png}};
+    \node[
+      anchor=west,
+      inner sep=0pt,
+      outer sep=0pt,
+      text=white,
+      font=\JLUKai\fontsize{7.7}{8.4}\selectfont
+    ] at ([xshift=.18cm]jlu-title-logo.east)
+      {\DepartmentName};
+    \node[
+      anchor=north west,
+      text=white,
+      align=left,
+      text width=.88\paperwidth,
+      font=\JLUKai\fontsize{18}{21}\selectfont
+    ] at ([xshift=.65cm,yshift=-3.18cm]current page.north west)
+      {\ThesisTitle};
+    \node[
+      anchor=north west,
+      text=white,
+      align=left,
+      text width=.88\paperwidth,
+      font=\JLUKai\fontsize{10.5}{12}\selectfont
+    ] at ([xshift=.65cm,yshift=-3.92cm]current page.north west)
+      {\ThesisSubtitle};
+    \fill[JLUBlue!10]
+      ([yshift=-4.55cm]current page.north west)
+      -- ([xshift=.73\paperwidth,yshift=-4.55cm]current page.north west)
+      -- ([xshift=.82\paperwidth,yshift=-6.08cm]current page.north west)
+      -- ([yshift=-6.08cm]current page.north west)
+      -- cycle;
+    \node[
+      anchor=north west,
+      text=black,
+      font=\JLUKai\small
+    ] at ([xshift=.72cm,yshift=-4.82cm]current page.north west) {%
+      \begin{tabular}{rl}
+        答辩人： & \AuthorName \\
+        学号： & \StudentID \\
+        指导教师： & \SupervisorName \\
+        学院： & \DepartmentName \\
+        专业： & \MajorName
+      \end{tabular}};
+    \node[
+      anchor=south west,
+      text=black,
+      font=\JLUKai\small
+    ] at ([xshift=.72cm,yshift=.58cm]current page.south west) {\DefenseDate};
+    \node[
+      anchor=south east,
+      text=JLUBlue!32,
+      font=\JLUKai\fontsize{12}{14}\selectfont
+    ] at ([xshift=-.55cm,yshift=.58cm]current page.south east) {\DepartmentEnglishName};
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{提纲}
+  \vspace{.45cm}
+  \tableofcontents
+\end{frame}
+
+\section{研究背景与问题提出}
+
+\begin{frame}{研究背景}
+  \begin{block}{本页应该写什么}
+    对应论文第 1 章或第 1 节的研究背景。用 3--4 句话说明研究问题从哪里来、为什么值得研究、与实际场景有什么关系。
+  \end{block}
+
+  \begin{itemize}
+    \item 背景来源：某类复杂系统的数据规模持续增长，传统分析流程难以快速响应。
+    \item 现实问题：数据质量不稳定、变量关系复杂，人工判断成本较高。
+    \item 研究必要性：需要构建更稳健、更易解释的分析框架来支撑后续决策。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{研究现状与问题}
+  \begin{block}{本页应该写什么}
+    对应论文第 1 章或第 1 节的国内外研究现状。不要堆文献，按研究路线概括已有工作，并自然引出本文要解决的问题。
+  \end{block}
+
+  \begin{itemize}
+    \item 研究路线一：基于规则或统计假设的方法结构清晰，便于解释。
+    \item 研究路线二：基于数据驱动的方法适应性更强，适合复杂场景。
+    \item 待解决问题：概括现有研究仍存在的不足，并引出本文切入点。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{研究内容与贡献}
+  \begin{block}{本页应该写什么}
+    对应论文第 1 章或第 1 节的本文研究内容。建议只保留 3 条主贡献，每条都写成“做了什么 + 解决什么问题”。
+  \end{block}
+
+  \begin{enumerate}
+    \item 研究内容一：提出一个面向目标任务的整体分析框架。
+    \item 研究内容二：通过多组实验验证框架的稳定性和有效性。
+    \item 研究内容三：结合一个实际案例展示方法的应用价值。
+  \end{enumerate}
+\end{frame}
+
+\section{预备知识}
+
+\begin{frame}{问题描述}
+  \begin{block}{本页应该写什么}
+    对应论文第 2 章或第 2 节的问题描述。本页要定义研究对象、输入输出、核心假设和目标任务。
+  \end{block}
+
+  \begin{equation*}
+    \text{输入对象}
+    \quad \longrightarrow \quad
+    \text{模型或方法}
+    \quad \longrightarrow \quad
+    \text{目标输出}
+  \end{equation*}
+
+  \begin{itemize}
+    \item 研究对象：一组随时间或样本变化而产生的多维观测数据。
+    \item 基本假设：样本经过统一预处理，关键变量可以用于后续建模。
+    \item 研究目标：在统一评价口径下得到稳定、准确且可解释的输出。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{基本概念与评价指标}
+  \begin{block}{本页应该写什么}
+    对应论文第 2 章或第 2 节中的基本概念与评价指标。这里不需要长推导，重点解释后续实验表格和图像应该怎么看。
+  \end{block}
+
+  \begin{itemize}
+    \item 基本概念：先解释“样本、特征、模型输出、评价指标”等核心术语。
+    \item 评价指标一：准确性指标，用于衡量方法输出是否接近目标。
+    \item 评价指标二：稳定性指标，用于衡量方法在不同场景下是否可靠。
+    \item 对比原则：说明后续实验如何在统一口径下比较不同方法。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{预备知识回顾}
+  \begin{block}{本页应该写什么}
+    对应论文第 2 章或第 2 节的预备知识。建议用一页表格概括关键方法或理论，避免把论文中的长公式逐条搬到答辩稿里。
+  \end{block}
+
+  \begin{table}
+    \centering
+    \caption{预备知识中的主要内容}
+    \begin{tabular}{lll}
+      \toprule
+      内容 & 核心思想 & 在本文中的作用 \\
+      \midrule
+      基本概念 & 统一符号与任务表述 & 支撑问题描述 \\
+      基础方法 & 介绍常用处理思路 & 作为对比参照 \\
+      评价指标 & 明确结果判断标准 & 支撑实验分析 \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\section{模型与方法}
+
+\begin{frame}{方法总体框架}
+  \begin{block}{本页应该写什么}
+    对应论文第 3 章或第 3 节的模型总述。建议放一张流程图，让老师先看到本文方法的整体逻辑。
+  \end{block}
+
+  \JLUFigurePlaceholder{建议放方法流程图：输入数据 -> 核心模型/算法 -> 关键统计量或输出 -> 判定/评价结果}
+
+  \begin{itemize}
+    \item 阶段一：整理原始数据，完成清洗、划分和特征准备。
+    \item 阶段二：构建核心模型，并计算用于判断的关键输出。
+    \item 阶段三：根据评价标准分析结果，并给出解释。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{核心模型或算法}
+  \begin{block}{本页应该写什么}
+    对应论文第 3 章或第 3 节的核心模型。这里只讲最关键的设计，避免把实现细节、参数细节全部放进来。
+  \end{block}
+
+  \begin{equation*}
+    \text{核心输入}
+    \quad \xrightarrow{\ \text{本文方法}\ }
+    \quad
+    \text{核心输出}
+  \end{equation*}
+
+  \begin{itemize}
+    \item 输入：经过预处理后的样本特征和必要的辅助信息。
+    \item 输出：模型给出的评分、类别、统计量或综合判断。
+    \item 设计理由：说明为什么该模型能解决前面提出的关键困难。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{关键公式或统计量}
+  \begin{block}{本页应该写什么}
+    对应论文第 3 章或第 3 节的核心公式。只放最能代表本文方法的一到两个公式，并解释符号含义。
+  \end{block}
+
+  \begin{equation*}
+    T = \Phi(\text{输入},\text{参数},\text{历史信息})
+  \end{equation*}
+
+  \begin{itemize}
+    \item $T$：表示用于评价或判定的核心指标。
+    \item 参数含义：解释公式里最重要的 2--3 个符号。
+    \item 使用方式：说明该公式如何进入算法流程或结果判断。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{参数设置与算法步骤}
+  \begin{block}{本页应该写什么}
+    对应论文第 3 章或第 3 节的算法流程。建议放算法表、流程图或 3--4 步文字，突出可复现的操作步骤。
+  \end{block}
+
+  \begin{enumerate}
+    \item 步骤一：设定数据划分方式和主要参数。
+    \item 步骤二：运行核心模型，得到中间统计量或预测结果。
+    \item 步骤三：按照统一准则输出最终结果。
+    \item 步骤四：结合图表解释结果，并进入实验验证。
+  \end{enumerate}
+\end{frame}
+
+\section{数值研究}
+
+\begin{frame}{实验设计}
+  \begin{block}{本页应该写什么}
+    对应论文第 4 章或第 4 节的实验总述。先讲实验主线，再讲评价口径，避免一开始就堆很多表。
+  \end{block}
+
+  \begin{itemize}
+    \item 实验主线一：验证本文方法在不同参数设置下的稳定性。
+    \item 实验主线二：与若干基线方法进行统一口径比较。
+    \item 评价口径：固定数据划分与评价指标，重复实验后汇总均值。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{本文方法自身性能}
+  \begin{block}{本页应该写什么}
+    对应论文第 4 章或第 4 节的第一组实验。本页只放最能说明方法稳定性或有效性的 2--3 个结果，不要把所有表格都搬过来。
+  \end{block}
+
+  \begin{itemize}
+    \item 结果一：参数变化时，主要指标保持在相对稳定范围内。
+    \item 结果二：在不同场景下，方法表现出较好的适应性。
+    \item 结果三：关键模块去除后性能下降，说明设计具有必要性。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{与基线方法对比}
+  \begin{block}{本页应该写什么}
+    对应论文第 4 章或第 4 节的对比实验。建议放一张精选表格或柱状图，突出本文方法在哪些场景下更优。
+  \end{block}
+
+  \begin{table}
+    \centering
+    \caption{示例对比结果}
+    \begin{tabular}{lccc}
+      \toprule
+      方法 & 场景一 & 场景二 & 场景三 \\
+      \midrule
+      基线方法一 & 0.812 & 0.764 & 0.701 \\
+      基线方法二 & 0.846 & 0.792 & 0.736 \\
+      基线方法三 & 0.858 & 0.801 & 0.744 \\
+      本文方法 & \alert{0.879} & \alert{0.823} & \alert{0.768} \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}{数值研究小结}
+  \begin{block}{本页应该写什么}
+    对应论文第 4 章或第 4 节的小结。本页要把大量实验压缩成 3 条结论，让老师听完知道实验支撑了什么。
+  \end{block}
+
+  \begin{enumerate}
+    \item 结论一：本文方法在主要实验中取得了较稳定的结果。
+    \item 结论二：与基线方法相比，部分关键场景下指标有所提升。
+    \item 结论三：在极端设置下仍存在波动，后续需要进一步分析。
+  \end{enumerate}
+\end{frame}
+
+\section{真实数据案例}
+
+\begin{frame}{案例背景与数据来源}
+  \begin{block}{本页应该写什么}
+    对应论文第 5 章或第 5 节的案例背景。讲清楚为什么选择这个真实数据或应用场景，以及它和本文研究问题的关系。
+  \end{block}
+
+  \begin{itemize}
+    \item 数据来源：某公开数据集或实际业务系统中的历史记录。
+    \item 数据特点：包含多类变量，样本规模适中，存在一定噪声。
+    \item 案例目的：说明该案例用于验证论文方法的哪一方面。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{数据处理与实验设计}
+  \begin{block}{本页应该写什么}
+    对应论文第 5 章或第 5 节的数据处理与实验设计。这里应交代样本划分、变量处理、训练和测试流程。
+  \end{block}
+
+  \begin{itemize}
+    \item 样本定义：根据标签或业务规则划分不同样本类型。
+    \item 变量处理：完成缺失值处理、标准化和关键特征筛选。
+    \item 实验流程：说明训练集、校准集、测试集或对照组如何划分。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{检测结果分析}
+  \begin{block}{本页应该写什么}
+    对应论文第 5 章或第 5 节的结果分析。建议放一张结果表、曲线图或案例截图，并用一句话概括案例结论。
+  \end{block}
+
+  \JLUFigurePlaceholder{建议放真实案例结果图：结果表、趋势曲线、检测曲线、系统截图或案例对比图}
+
+  \begin{itemize}
+    \item 主要结果：本文方法在示例案例中取得了较好的综合表现。
+    \item 结果解释：说明结果为什么支持论文结论，或指出仍存在的限制。
+  \end{itemize}
+\end{frame}
+
+\section{结论与展望}
+
+\begin{frame}{主要结论}
+  \begin{block}{本页应该写什么}
+    对应论文第 6 章或第 6 节的结论。建议按“方法、实验、案例”三条总结，不要重复前面所有细节。
+  \end{block}
+
+  \begin{enumerate}
+    \item 方法层面：构建了一个结构清晰、可复用的分析流程。
+    \item 实验层面：通过多组实验验证了主要设计的有效性。
+    \item 应用层面：在示例案例中展示了进一步应用的可能性。
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{不足与展望}
+  \begin{block}{本页应该写什么}
+    对应论文第 6 章或第 6 节后半部分。答辩时要主动说明限制，但措辞应转化为未来工作方向。
+  \end{block}
+
+  \begin{itemize}
+    \item 数据层面：后续可扩展到更大规模、更复杂来源的数据。
+    \item 方法层面：进一步优化模型效率，并补充更细致的理论分析。
+    \item 应用层面：探索在线部署、可解释展示和更复杂任务扩展。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{参考文献}
+  \begin{thebibliography}{99}
+    \bibitem{lamport1994latex}
+    Lamport, L.:
+    \newblock \LaTeX: A Document Preparation System.
+    \newblock Addison-Wesley, 1994.
+
+    \bibitem{tantau2024beamer}
+    Tantau, T., Wright, J., Miletić, V.:
+    \newblock The Beamer Class User Guide.
+    \newblock 2024.
+  \end{thebibliography}
+\end{frame}
+
+\begin{frame}
+  \centering
+  \vspace{1.85cm}
+  {\color{JLUBlue}\JLUKai\Huge 谢\quad 谢}
+
+  \vspace{.45cm}
+  {\JLUKai\Large 欢迎各位老师批评指正}
+\end{frame}
+
+\end{document}

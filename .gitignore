@@ -20,9 +20,13 @@ _minted/
 _minted*/
 *.pyg
 
+# Local reference templates for study, not part of the cleaned template package
+references/
+tmp/
+
 # Generated PDFs, except the final template preview
 *.pdf
-!reference_reconstruction.pdf
+!jlu_math_thesis_defense_beamer.pdf
 
 # Editor and OS noise
 .DS_Store
