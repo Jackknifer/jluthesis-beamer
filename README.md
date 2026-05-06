@@ -21,6 +21,7 @@ jlu-thesis-defense-beamer-template/
 │   ├── images/                  # 用户图片目录
 │   ├── jlu_defense.tex          # 校级模板入口
 │   ├── jlu_defense.pdf          # 校级模板预览
+│   ├── jlu_cover_test.tex       # 传统封面对比测试文件
 │   ├── references.bib           # 参考文献数据库
 │   └── .latexmkrc               # 编译配置
 ├── math/                        # 数学学院模板
@@ -47,6 +48,13 @@ jlu-thesis-defense-beamer-template/
 ```bash
 cd jlu
 latexmk jlu_defense.tex
+```
+
+编译校级传统封面对比页：
+
+```bash
+cd jlu
+latexmk jlu_cover_test.tex
 ```
 
 编译数学学院模板：

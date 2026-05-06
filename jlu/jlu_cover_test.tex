@@ -1,0 +1,90 @@
+\documentclass[12pt,aspectratio=43]{beamer}
+
+% 仅用于测试和对比的传统封面样式：只有一页封面，不包含正文模板结构。
+
+\usepackage[fontset=none]{ctex}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+\usetheme{default}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{}
+
+\setCJKmainfont[Path=./fonts/,BoldFont=SimHei.TTF]{SimKai.TTF}
+\setCJKsansfont[Path=./fonts/]{SimKai.TTF}
+\setCJKmonofont[Path=./fonts/]{SimSun.TTC}
+\newCJKfontfamily\JLUKai[Path=./fonts/,BoldFont=SimHei.TTF]{SimKai.TTF}
+\newCJKfontfamily\JLUHei[Path=./fonts/]{SimHei.TTF}
+
+\definecolor{JLUBlue}{RGB}{21,71,166}
+\definecolor{JLUTopNavy}{RGB}{8,33,82}
+\definecolor{JLULightBlue}{RGB}{238,244,252}
+
+\newcommand{\ThesisTitle}{基于时间序列分析的大学生摸鱼行为研究}
+\newcommand{\ThesisSubtitle}{毕业论文答辩}
+\newcommand{\AuthorName}{张三}
+\newcommand{\SupervisorName}{李四}
+\newcommand{\CollegeName}{数学学院}
+\newcommand{\MajorName}{统计学}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[white] (current page.south west) rectangle (current page.north east);
+    \fill[JLULightBlue] ([yshift=-1.62cm]current page.north west)
+      rectangle ([yshift=-1.72cm]current page.north east);
+
+    \node[
+      anchor=north west,
+      inner sep=0pt,
+      outer sep=0pt
+    ] (jlu-test-logo) at ([xshift=.78cm,yshift=-.44cm]current page.north west)
+      {\includegraphics[height=.92cm]{assets/jlu_logo_navy.png}};
+    \node[
+      anchor=west,
+      inner sep=0pt,
+      outer sep=0pt
+    ] at ([xshift=.18cm]jlu-test-logo.east)
+      {\includegraphics[height=.56cm]{assets/jlu_name_blue.png}};
+
+    \path[fill=JLUBlue]
+      ([yshift=-2.56cm]current page.north west)
+      rectangle ([yshift=-4.62cm]current page.north east);
+    \node[
+      anchor=center,
+      align=center,
+      inner sep=0pt,
+      outer sep=0pt
+    ] at ([yshift=-3.58cm]current page.north) {%
+      \begin{minipage}{.86\paperwidth}
+        \centering
+        {\JLUKai\fontsize{17.2}{19.5}\selectfont\color{white}\ThesisTitle\par}
+        \vspace{.14cm}
+        {\JLUKai\fontsize{9.8}{11.0}\selectfont\color{white!88}\ThesisSubtitle\par}
+      \end{minipage}%
+    };
+
+    \node[
+      anchor=north,
+      align=center,
+      inner sep=0pt,
+      outer sep=0pt
+    ] at ([yshift=-5.46cm]current page.north) {%
+      \begin{minipage}{.56\paperwidth}
+        \centering
+        {\JLUKai\fontsize{10.2}{13.2}\selectfont
+          \begin{tabular}{@{}r@{\hspace{.18cm}}l@{}}
+            {\color{JLUBlue!78!JLUTopNavy}答辩人：} & \AuthorName \\
+            {\color{JLUBlue!78!JLUTopNavy}指导教师：} & \SupervisorName \\
+            {\color{JLUBlue!78!JLUTopNavy}学院：} & \CollegeName \\
+            {\color{JLUBlue!78!JLUTopNavy}专业：} & \MajorName
+          \end{tabular}}%
+      \end{minipage}%
+    };
+  \end{tikzpicture}
+\end{frame}
+
+\end{document}

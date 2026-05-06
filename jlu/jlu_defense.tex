@@ -36,12 +36,13 @@
 % \AuthorName     : 答辩人姓名。
 % \StudentID      : 学号。
 % \SupervisorName : 指导教师。
-% \DepartmentName : 学校中文名；封面/尾页品牌区和信息块使用。
+% \DepartmentName : 学校中文名；用于 PDF 元信息。
 % \DepartmentShortName : 正文页眉右侧使用，过长时可写成学校简称。
 % \DepartmentEnglishName : 学校英文名；用于 PDF 元信息。
+% \CollegeName    : 学院中文名；封面/尾页答辩信息块使用。
 % \MajorName      : 专业名称；封面/尾页答辩信息块使用。
 % \DefenseDate    : 答辩日期；封面/尾页左下角和页脚中栏使用。
-\newcommand{\ThesisTitle}{基于时间序列分析的大学生学习行为研究}
+\newcommand{\ThesisTitle}{基于时间序列分析的大学生摸鱼行为研究}
 \newcommand{\ThesisSubtitle}{毕业论文答辩}
 \newcommand{\AuthorName}{张三}
 \newcommand{\StudentID}{102201XX}
@@ -49,7 +50,8 @@
 \newcommand{\DepartmentName}{吉林大学}
 \newcommand{\DepartmentShortName}{吉林大学}
 \newcommand{\DepartmentEnglishName}{Jilin University}
-\newcommand{\MajorName}{数据科学与大数据技术}
+\newcommand{\CollegeName}{数学学院}
+\newcommand{\MajorName}{统计学}
 \newcommand{\DefenseDate}{2026 年 5 月 18 日}
 
 % Beamer 的短标题也使用副标题，保证目录页左上角显示“毕业论文答辩”。
@@ -220,11 +222,11 @@
     \parbox[t]{\JLUCoverInfoWidth}{%
       \raggedright
       {\JLUKai\fontsize{8.8}{10.2}\selectfont
-        \begin{tabular}{@{}r@{\hspace{.34cm}}l@{}}
+        \begin{tabular}{@{}r@{\hspace{.16cm}}l@{}}
           {\color{JLUBlue!70!JLUTopNavy}答辩人：} & \AuthorName \\
           {\color{JLUBlue!70!JLUTopNavy}学号：} & \StudentID \\
           {\color{JLUBlue!70!JLUTopNavy}指导教师：} & \SupervisorName \\
-          {\color{JLUBlue!70!JLUTopNavy}学校：} & \DepartmentName \\
+          {\color{JLUBlue!70!JLUTopNavy}学院：} & \CollegeName \\
           {\color{JLUBlue!70!JLUTopNavy}专业：} & \MajorName
         \end{tabular}}%
     }%
@@ -499,7 +501,7 @@
         \begin{beamercolorbox}[wd=.24\paperwidth,ht=\JLUHeadlineHeight,dp=0pt,center]{headline in head/foot}%
           \vbox to \JLUHeadlineHeight{\vfil%
             \hbox to .24\paperwidth{%
-              \hfil\JLUHeaderBrand\hfil}%
+              \hfil\JLUHeaderBrand\hspace{.22cm}}%
           \vfil}%
         \end{beamercolorbox}%
       }%
