@@ -18,6 +18,10 @@
 \newCJKfontfamily\JLUKai[Path=./fonts/,BoldFont=SimHei.TTF]{SimKai.TTF}
 \newCJKfontfamily\JLUHei[Path=./fonts/]{SimHei.TTF}
 
+\setbeamerfont{author in head/foot}{family=\JLUKai,size=\scriptsize}
+\setbeamerfont{title in head/foot}{family=\JLUKai,size=\scriptsize}
+\setbeamerfont{date in head/foot}{family=\JLUKai,size=\scriptsize}
+
 \definecolor{JLUBlue}{RGB}{21,71,166}
 \definecolor{JLUTopNavy}{RGB}{8,33,82}
 \definecolor{JLULightBlue}{RGB}{238,244,252}
@@ -28,6 +32,68 @@
 \newcommand{\SupervisorName}{李四}
 \newcommand{\CollegeName}{数学学院}
 \newcommand{\MajorName}{统计学}
+\newcommand{\DefenseDate}{2026 年 5 月 18 日}
+
+\newcommand{\JLUFooterLeftText}{\AuthorName}
+\newcommand{\JLUFooterMiddleText}{\DefenseDate}
+\newcommand{\JLUFooterRightText}{\ThesisSubtitle}
+\newlength{\JLUFootlineLeftSegmentWidth}
+\setlength{\JLUFootlineLeftSegmentWidth}{.25\paperwidth}
+\newlength{\JLUFootlineLeftHalfWidth}
+\setlength{\JLUFootlineLeftHalfWidth}{.5\paperwidth}
+\newlength{\JLUFootlineRightTitleWidth}
+\setlength{\JLUFootlineRightTitleWidth}{.40909\paperwidth}
+\newlength{\JLUFootlinePageWidth}
+\setlength{\JLUFootlinePageWidth}{\dimexpr\paperwidth-\JLUFootlineLeftHalfWidth-\JLUFootlineRightTitleWidth\relax}
+\newlength{\JLUFootlineHeight}
+\setlength{\JLUFootlineHeight}{1.55ex}
+\newlength{\JLUFootlineDepth}
+\setlength{\JLUFootlineDepth}{.45ex}
+\newlength{\JLUFootlineTotalHeight}
+\setlength{\JLUFootlineTotalHeight}{\dimexpr\JLUFootlineHeight+\JLUFootlineDepth\relax}
+\newlength{\JLUFootlineNameCenterX}
+\setlength{\JLUFootlineNameCenterX}{.125\paperwidth}
+\newlength{\JLUFootlineDateCenterX}
+\setlength{\JLUFootlineDateCenterX}{.375\paperwidth}
+\newlength{\JLUFootlineRightTitleCenterX}
+\setlength{\JLUFootlineRightTitleCenterX}{.704545\paperwidth}
+\newlength{\JLUFootlineTextCenterY}
+\setlength{\JLUFootlineTextCenterY}{.5\JLUFootlineTotalHeight}
+
+\newcommand{\JLUDrawFootline}{%
+  \begin{scope}[shift={(current page.south west)}]
+    \fill[JLUTopNavy] (0,0) rectangle (\JLUFootlineLeftHalfWidth,\JLUFootlineTotalHeight);
+    \fill[JLUBlue] (\JLUFootlineLeftHalfWidth,0) rectangle (\paperwidth,\JLUFootlineTotalHeight);
+    \draw[white!16,line width=.18pt]
+      (\JLUFootlineLeftSegmentWidth,0) -- (\JLUFootlineLeftSegmentWidth,\JLUFootlineTotalHeight);
+    \draw[white!16,line width=.18pt]
+      (\JLUFootlineLeftHalfWidth,0) -- (\JLUFootlineLeftHalfWidth,\JLUFootlineTotalHeight);
+    \draw[white!14,line width=.18pt]
+      (\dimexpr\JLUFootlineLeftHalfWidth+\JLUFootlineRightTitleWidth\relax,0)
+      -- (\dimexpr\JLUFootlineLeftHalfWidth+\JLUFootlineRightTitleWidth\relax,\JLUFootlineTotalHeight);
+    \node[
+      text=white,
+      font=\usebeamerfont{author in head/foot},
+      inner sep=0pt
+    ] at (\JLUFootlineNameCenterX,\JLUFootlineTextCenterY) {\JLUFooterLeftText};
+    \node[
+      text=white,
+      font=\usebeamerfont{date in head/foot},
+      inner sep=0pt
+    ] at (\JLUFootlineDateCenterX,\JLUFootlineTextCenterY) {\JLUFooterMiddleText};
+    \node[
+      text=white,
+      font=\usebeamerfont{title in head/foot},
+      inner sep=0pt
+    ] at (\JLUFootlineRightTitleCenterX,\JLUFootlineTextCenterY) {\JLUFooterRightText};
+    \node[
+      anchor=east,
+      text=white,
+      font=\usebeamerfont{date in head/foot},
+      inner sep=0pt
+    ] at ([xshift=-.8ex]\paperwidth,\JLUFootlineTextCenterY) {1 / 1};
+  \end{scope}%
+}
 
 \begin{document}
 
@@ -49,14 +115,14 @@
       {\includegraphics[height=.66cm]{assets/jlu_name_blue.png}};
 
     \path[fill=JLUBlue]
-      ([yshift=-2.56cm]current page.north west)
-      rectangle ([yshift=-4.62cm]current page.north east);
+      ([yshift=-2.34cm]current page.north west)
+      rectangle ([yshift=-4.98cm]current page.north east);
     \node[
       anchor=center,
       align=center,
       inner sep=0pt,
       outer sep=0pt
-    ] at ([yshift=-3.58cm]current page.north) {%
+    ] at ([yshift=-3.66cm]current page.north) {%
       \begin{minipage}{.86\paperwidth}
         \centering
         {\JLUKai\fontsize{17.2}{19.5}\selectfont\color{white}\ThesisTitle\par}
@@ -70,7 +136,7 @@
       align=center,
       inner sep=0pt,
       outer sep=0pt
-    ] at ([yshift=-5.46cm]current page.north) {%
+    ] at ([yshift=-5.74cm]current page.north) {%
       \begin{minipage}{.56\paperwidth}
         \centering
         {\JLUKai\fontsize{10.2}{13.2}\selectfont
@@ -82,6 +148,7 @@
           \end{tabular}}%
       \end{minipage}%
     };
+    \JLUDrawFootline
   \end{tikzpicture}
 \end{frame}
 
