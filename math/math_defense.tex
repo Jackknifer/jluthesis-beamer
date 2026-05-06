@@ -4,7 +4,7 @@
 % 使用建议：
 % 1. 普通使用者优先修改下面的“论文信息”“章节标题”和 document 环境内的 frame。
 % 2. 如需微调封面、尾页、页眉页脚，再改对应的“layout knobs”参数。
-% 3. 本模板依赖上级目录的 fonts/（共享字体）和本目录下的 assets/、images/、references.bib。
+% 3. 本模板依赖本目录下的 fonts/、assets/、images/、references.bib。
 
 \usepackage[fontset=none]{ctex}
 \usepackage{fontspec}
@@ -31,7 +31,7 @@
 
 % ---------- User quick-edit area: thesis information ----------
 % 这里是最常修改的区域。换成自己的论文后，通常只需要改这一组命令。
-% \ThesisTitle    : 封面主标题；过长时会自动换行，建议控制在两行以内。
+% \ThesisTitle    : 封面主标题；始终占用两行空间。一行/两行/长标题都适用。
 % \ThesisSubtitle : 封面右侧副标题、目录页左上角、页脚第三栏共用文本。
 % \AuthorName     : 答辩人姓名。
 % \StudentID      : 学号。
@@ -41,7 +41,7 @@
 % \DepartmentEnglishName : 封面/尾页右下角的浅色英文名。
 % \MajorName      : 专业名称；封面/尾页答辩信息块使用。
 % \DefenseDate    : 答辩日期；封面/尾页左下角和页脚中栏使用。
-\newcommand{\ThesisTitle}{怎么摸鱼2026年应用摸鱼学专业毕业论文}
+\newcommand{\ThesisTitle}{基于时间序列分析的大学生摸鱼行为研究}
 \newcommand{\ThesisSubtitle}{毕业论文答辩}
 \newcommand{\AuthorName}{张三}
 \newcommand{\StudentID}{102201XX}
@@ -134,6 +134,8 @@
 % 这一组参数控制封面和结束页的版式。只想替换内容时不用动这里。
 % \JLUCoverTitleWidth            : 主标题文本宽度；越小越容易换行。
 % \JLUCoverTitleTopY             : 主标题上边缘高度；数值更负会整体下移。
+% \JLUCoverTitleLineHeight       : 单行文本行高。
+% \JLUCoverTitleTwoLineHeight    : 主标题固定占位的两行高度（不随内容变化）。
 % \JLUCoverTitleSecondLineOffset : 副标题横线对齐第二行视觉中线的位置。
 % \JLUCoverInfoTopWidth          : 答辩信息浅色梯形的上边宽度。
 % \JLUCoverInfoInsetDepth        : 梯形向蓝色标题块嵌入的深度。
@@ -151,6 +153,8 @@
 \setlength{\JLUCoverTitleTopY}{-2.42cm}
 \newlength{\JLUCoverTitleLineHeight}
 \setlength{\JLUCoverTitleLineHeight}{21.5pt}
+\newlength{\JLUCoverTitleTwoLineHeight}
+\setlength{\JLUCoverTitleTwoLineHeight}{2\JLUCoverTitleLineHeight}
 \newlength{\JLUCoverTitleSecondLineOffset}
 \setlength{\JLUCoverTitleSecondLineOffset}{1.35\JLUCoverTitleLineHeight}
 \newlength{\JLUCoverTitleSecondLineY}
@@ -176,7 +180,7 @@
 \setlength{\JLUThanksTitleBottomY}{-5.00cm}
 \newlength{\JLUThanksTextCenterY}
 % 根据当前论文题目和答辩信息，先排成不可见盒子，再计算蓝色标题块和浅色信息块的位置。
-% 这样标题换成一行/两行时，下面的梯形信息块会自动跟着移动。
+% 标题始终占用两行的固定空间（由 \JLUCoverTitleTwoLineHeight 定义），下面的梯形信息块位置固定。
 \newcommand{\JLUPrepareCoverLayout}{%
   \sbox{\JLUCoverTitleBox}{%
     \parbox[t]{\JLUCoverTitleWidth}{%
@@ -198,7 +202,7 @@
     }%
   }%
   \setlength{\JLUCoverTitleSecondLineY}{\dimexpr\JLUCoverTitleTopY-\JLUCoverTitleSecondLineOffset\relax}%
-  \setlength{\JLUCoverTitleBottomY}{\dimexpr\JLUCoverTitleTopY-\ht\JLUCoverTitleBox-\dp\JLUCoverTitleBox-1.38cm\relax}%
+  \setlength{\JLUCoverTitleBottomY}{\dimexpr\JLUCoverTitleTopY-\JLUCoverTitleTwoLineHeight-1.38cm\relax}%
   \setlength{\JLUCoverInfoTopY}{\dimexpr\JLUCoverTitleBottomY+\JLUCoverInfoInsetDepth-\JLUCoverInfoTextTopGap\relax}%
   \setlength{\JLUCoverInfoBottomY}{\dimexpr\JLUCoverInfoTopY-\ht\JLUCoverInfoBox-\dp\JLUCoverInfoBox-\JLUCoverInfoBottomGap\relax}%
 }
@@ -754,9 +758,8 @@
   \end{block}
 
   \begin{itemize}
-    \item 推荐编译方式：使用 XeLaTeX 编译。
-    \item 推荐替换位置：论文信息、章节标题、正文 frame、图表和参考文献。
-    \item 模板内容参考：川大模板的使用说明结构，浙大模板的简洁示例结构。
+    \item 编译方式：使用 XeLaTeX 编译。
+    \item 替换位置：论文信息、章节标题、正文 frame、图表和参考文献。
   \end{itemize}
 \end{frame}
 
@@ -766,7 +769,7 @@
   \end{block}
 
   \begin{itemize}
-    \item \JLUEmph{题目}：建议控制在两行以内，必要时手动断行。
+    \item \JLUEmph{题目}：建议控制在两行以内。
     \item \JLUEmph{副标题}：用于封面右侧、目录页左上角和页脚第三栏，默认写作“毕业论文答辩”。
     \item \JLUEmph{正文}：建议每页只保留一个核心观点，避免从论文中整段复制。
   \end{itemize}

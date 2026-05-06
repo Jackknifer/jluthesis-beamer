@@ -26,7 +26,8 @@ tmp/
 
 # Generated PDFs, except the final template preview
 *.pdf
-!jlu_math_thesis_defense_beamer.pdf
+!math/math_defense.pdf
+!jlu/jlu_defense.pdf
 
 # Editor and OS noise
 .DS_Store

@@ -1,0 +1,998 @@
+\documentclass[12pt,aspectratio=43]{beamer}
+
+% 吉林大学毕业论文答辩 Beamer 校级模板。
+% 使用建议：
+% 1. 普通使用者优先修改下面的“论文信息”“章节标题”和 document 环境内的 frame。
+% 2. 如需微调封面、尾页、页眉页脚，再改对应的“layout knobs”参数。
+% 3. 本模板依赖本目录下的 fonts/、assets/、images/、references.bib。
+
+\usepackage[fontset=none]{ctex}
+\usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+\usepackage[numbers,sort&compress]{natbib}
+
+\usetheme{default}
+
+% ---------- Font files ----------
+% 本模板使用 XeLaTeX 编译。SimKai/SimHei/SimSun 字体文件放在本目录下的 fonts/。
+% 若换用系统字体，可去掉 Path=./fonts/，并把字体名改为系统中实际安装的名称。
+\setCJKmainfont[Path=./fonts/,BoldFont=SimHei.TTF]{SimKai.TTF}
+\setCJKsansfont[Path=./fonts/]{SimKai.TTF}
+\setCJKmonofont[Path=./fonts/]{SimSun.TTC}
+\newCJKfontfamily\JLUKai[Path=./fonts/,BoldFont=SimHei.TTF]{SimKai.TTF}
+\newCJKfontfamily\JLUHei[Path=./fonts/]{SimHei.TTF}
+\newcommand{\JLUEmph}[1]{{\JLUHei #1}}
+
+% ---------- User quick-edit area: thesis information ----------
+% 这里是最常修改的区域。换成自己的论文后，通常只需要改这一组命令。
+% \ThesisTitle    : 封面主标题；始终占用两行空间。一行/两行/长标题都适用。
+% \ThesisSubtitle : 封面右侧副标题、目录页左上角、页脚第三栏共用文本。
+% \AuthorName     : 答辩人姓名。
+% \StudentID      : 学号。
+% \SupervisorName : 指导教师。
+% \DepartmentName : 学校中文名；封面/尾页品牌区和信息块使用。
+% \DepartmentShortName : 正文页眉右侧使用，过长时可写成学校简称。
+% \DepartmentEnglishName : 学校英文名；用于 PDF 元信息。
+% \MajorName      : 专业名称；封面/尾页答辩信息块使用。
+% \DefenseDate    : 答辩日期；封面/尾页左下角和页脚中栏使用。
+\newcommand{\ThesisTitle}{基于时间序列分析的大学生学习行为研究}
+\newcommand{\ThesisSubtitle}{毕业论文答辩}
+\newcommand{\AuthorName}{张三}
+\newcommand{\StudentID}{102201XX}
+\newcommand{\SupervisorName}{李四}
+\newcommand{\DepartmentName}{吉林大学}
+\newcommand{\DepartmentShortName}{吉林大学}
+\newcommand{\DepartmentEnglishName}{Jilin University}
+\newcommand{\MajorName}{数据科学与大数据技术}
+\newcommand{\DefenseDate}{2026 年 5 月 18 日}
+
+% Beamer 的短标题也使用副标题，保证目录页左上角显示“毕业论文答辩”。
+\title[\ThesisSubtitle]{\ThesisTitle}
+\author[\AuthorName]{\AuthorName}
+\institute[\DepartmentName]{\DepartmentName}
+\date[\DefenseDate]{\DefenseDate}
+
+% ---------- Theme colors ----------
+% 主题色集中在这里。若需要换学院/学校配色，优先调整这一组颜色。
+% JLUBlue 控制主蓝色块；JLUTopNavy 控制深蓝页眉和页脚；JLULightBlue 控制浅底色。
+\definecolor{JLUBlack}{HTML}{000000}
+\definecolor{JLUBlue}{RGB}{21,71,166}
+\definecolor{JLUTopNavy}{RGB}{8,33,82}
+\definecolor{JLUTitleBlue}{RGB}{19,64,150}
+\definecolor{JLUBlockBody}{RGB}{231,235,242}
+\definecolor{JLUBlockLine}{RGB}{63,105,183}
+\definecolor{JLULightBlue}{RGB}{238,244,252}
+\definecolor{JLUNav}{RGB}{193,206,231}
+
+% ---------- Beamer base style ----------
+% 这一段设置正文、标题、block、页眉页脚的默认字体和颜色。
+% 普通内容页的左右边距由 \setbeamersize 控制；需要更密集/更舒展时改这里。
+\setbeamersize{text margin left=0.68cm,text margin right=0.68cm}
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{structure}{fg=JLUBlue}
+\setbeamercolor{frametitle}{fg=white,bg=JLUTitleBlue}
+\setbeamercolor{frametitle right}{fg=white,bg=JLUBlack}
+\setbeamercolor{block title}{fg=white,bg=JLUTitleBlue}
+\setbeamercolor{block body}{fg=black,bg=JLUBlockBody}
+\setbeamercolor{alerted text}{fg=JLUBlue}
+\setbeamercolor{section in head/foot}{fg=white,bg=JLUBlack}
+\setbeamercolor{section in head/foot shaded}{fg=white!52,bg=JLUBlack}
+\setbeamercolor{subsection in head/foot}{fg=white,bg=JLUBlue}
+\setbeamercolor{subsection in head/foot shaded}{fg=white!62,bg=JLUBlue}
+\setbeamercolor{author in head/foot}{fg=white,bg=JLUTopNavy}
+\setbeamercolor{title in head/foot}{fg=white,bg=JLUBlue}
+\setbeamercolor{date in head/foot}{fg=white,bg=JLUTitleBlue}
+\setbeamercolor{institute in head/foot}{fg=white,bg=JLUBlue}
+\setbeamercolor{headline in head/foot}{fg=white,bg=}
+
+\setbeamerfont{frametitle}{family=\JLUKai,size=\Large}
+\setbeamerfont{framesubtitle}{family=\JLUKai,size=\normalsize}
+\setbeamerfont{block title}{family=\JLUKai,size=\normalsize}
+\setbeamerfont{block body}{family=\JLUKai,size=\normalsize}
+\setbeamerfont{normal text}{family=\JLUKai,size=\normalsize}
+\setbeamerfont{section in toc}{family=\JLUKai,size=\large}
+\setbeamerfont{subsection in toc}{family=\JLUKai,size=\normalsize}
+\setbeamerfont{section in head/foot}{family=\JLUKai,size=\fontsize{5.5}{6.2}\selectfont}
+\setbeamerfont{subsection in head/foot}{family=\JLUKai,size=\fontsize{5.2}{5.8}\selectfont}
+\setbeamerfont{institute in head/foot}{family=\JLUKai,size=\fontsize{6.2}{6.8}\selectfont}
+\setbeamerfont{author in head/foot}{family=\JLUKai,size=\scriptsize}
+\setbeamerfont{title in head/foot}{family=\JLUKai,size=\scriptsize}
+\setbeamerfont{date in head/foot}{family=\JLUKai,size=\scriptsize}
+
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  backgroundcolor=\color{JLULightBlue},
+  keywordstyle=\bfseries\color{JLUBlue},
+  commentstyle=\itshape\color{black!48},
+  stringstyle=\color{JLUBlue!72!black},
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  frame=single,
+  rulecolor=\color{JLUBlockLine},
+  framerule=.35pt,
+  framesep=4pt,
+  numbers=left,
+  numbersep=6pt,
+  numberstyle=\tiny\color{black!45},
+  breaklines=true,
+  xleftmargin=1.2em,
+  xrightmargin=.3em
+}
+
+\newcommand{\JLULogo}{%
+  \raisebox{\dimexpr-.5\height+.42ex\relax}{\includegraphics[height=\JLUHeadlineHeight]{assets/jlu_logo_white.png}}%
+}
+\newcommand{\JLUDrawBrand}[1]{%
+  \node[
+    anchor=west,
+    inner sep=0pt,
+    outer sep=0pt
+  ] (#1-logo) at (.28cm,-.78cm)
+    {\includegraphics[height=1.08cm]{assets/jlu_logo_navy.png}};
+  \node[
+    anchor=west,
+    inner sep=0pt,
+    outer sep=0pt
+  ] at ([xshift=.16cm]#1-logo.east)
+    {\includegraphics[height=.58cm]{assets/jlu_name_navy.png}};
+}
+\newcommand{\JLUDrawCornerMotto}[1]{%
+  \node[
+    anchor=south east,
+    inner sep=0pt,
+    outer sep=0pt,
+    opacity=#1
+  ] at ([xshift=-.55cm,yshift=.50cm]\paperwidth,-\paperheight)
+    {\includegraphics[width=2.62cm]{assets/jlu_motto_navy.png}};
+}
+
+% ---------- Cover and ending page layout knobs ----------
+% 这一组参数控制封面和结束页的版式。只想替换内容时不用动这里。
+% \JLUCoverTitleWidth            : 主标题文本宽度；越小越容易换行。
+% \JLUCoverTitleTopY             : 主标题上边缘高度；数值更负会整体下移。
+% \JLUCoverTitleLineHeight       : 单行文本行高。
+% \JLUCoverTitleTwoLineHeight    : 主标题固定占位的两行高度（不随内容变化）。
+% \JLUCoverTitleSecondLineOffset : 副标题横线对齐第二行视觉中线的位置。
+% \JLUCoverInfoTopWidth          : 答辩信息浅色梯形的上边宽度。
+% \JLUCoverInfoInsetDepth        : 梯形向蓝色标题块嵌入的深度。
+% \JLUCoverInfoTextTopGap        : 答辩信息文字与梯形上边缘的距离。
+\newsavebox{\JLUCoverTitleBox}
+\newsavebox{\JLUCoverInfoBox}
+\newcommand{\JLUCoverTitleFont}{\JLUKai\fontsize{19.5}{21.5}\selectfont}
+\newlength{\JLUCoverTitleWidth}
+\setlength{\JLUCoverTitleWidth}{.78\paperwidth}
+\newlength{\JLUCoverInfoWidth}
+\setlength{\JLUCoverInfoWidth}{.66\paperwidth}
+\newlength{\JLUCoverInfoTopWidth}
+\setlength{\JLUCoverInfoTopWidth}{.72\paperwidth}
+\newlength{\JLUCoverTitleTopY}
+\setlength{\JLUCoverTitleTopY}{-2.42cm}
+\newlength{\JLUCoverTitleLineHeight}
+\setlength{\JLUCoverTitleLineHeight}{21.5pt}
+\newlength{\JLUCoverTitleTwoLineHeight}
+\setlength{\JLUCoverTitleTwoLineHeight}{2\JLUCoverTitleLineHeight}
+\newlength{\JLUCoverTitleSecondLineOffset}
+\setlength{\JLUCoverTitleSecondLineOffset}{1.35\JLUCoverTitleLineHeight}
+\newlength{\JLUCoverTitleSecondLineY}
+\newlength{\JLUCoverTitleBottomY}
+\newlength{\JLUCoverInfoTopY}
+\newlength{\JLUCoverInfoBottomY}
+\newlength{\JLUCoverInfoInsetDepth}
+\setlength{\JLUCoverInfoInsetDepth}{.96cm}
+\newlength{\JLUCoverInfoTextTopGap}
+\setlength{\JLUCoverInfoTextTopGap}{.12cm}
+\newlength{\JLUCoverInfoBottomGap}
+\setlength{\JLUCoverInfoBottomGap}{.16cm}
+\newlength{\JLUCoverInfoEdgeGap}
+\setlength{\JLUCoverInfoEdgeGap}{1.6pt}
+\newlength{\JLUCoverInfoBandTopY}
+\newlength{\JLUCoverInfoBandBottomY}
+\newlength{\JLUCoverInfoBandHeight}
+\newlength{\JLUCoverInfoInsetRun}
+\newlength{\JLUCoverInfoBottomRun}
+\newlength{\JLUThanksTitleTopY}
+\setlength{\JLUThanksTitleTopY}{-2.06cm}
+\newlength{\JLUThanksTitleBottomY}
+\setlength{\JLUThanksTitleBottomY}{-5.00cm}
+\newlength{\JLUThanksTextCenterY}
+% 根据当前论文题目和答辩信息，先排成不可见盒子，再计算蓝色标题块和浅色信息块的位置。
+% 标题始终占用两行的固定空间（由 \JLUCoverTitleTwoLineHeight 定义），下面的梯形信息块位置固定。
+\newcommand{\JLUPrepareCoverLayout}{%
+  \sbox{\JLUCoverTitleBox}{%
+    \parbox[t]{\JLUCoverTitleWidth}{%
+      \raggedright
+      {\JLUCoverTitleFont\color{white} \ThesisTitle}%
+    }%
+  }%
+  \sbox{\JLUCoverInfoBox}{%
+    \parbox[t]{\JLUCoverInfoWidth}{%
+      \raggedright
+      {\JLUKai\fontsize{8.8}{10.2}\selectfont
+        \begin{tabular}{@{}r@{\hspace{.34cm}}l@{}}
+          {\color{JLUBlue!70!JLUTopNavy}\JLUHei 答辩人} & \AuthorName \\
+          {\color{JLUBlue!70!JLUTopNavy}\JLUHei 学号} & \StudentID \\
+          {\color{JLUBlue!70!JLUTopNavy}\JLUHei 指导教师} & \SupervisorName \\
+          {\color{JLUBlue!70!JLUTopNavy}\JLUHei 学校} & \DepartmentName \\
+          {\color{JLUBlue!70!JLUTopNavy}\JLUHei 专业} & \MajorName
+        \end{tabular}}%
+    }%
+  }%
+  \setlength{\JLUCoverTitleSecondLineY}{\dimexpr\JLUCoverTitleTopY-\JLUCoverTitleSecondLineOffset\relax}%
+  \setlength{\JLUCoverTitleBottomY}{\dimexpr\JLUCoverTitleTopY-\JLUCoverTitleTwoLineHeight-1.38cm\relax}%
+  \setlength{\JLUCoverInfoTopY}{\dimexpr\JLUCoverTitleBottomY+\JLUCoverInfoInsetDepth-\JLUCoverInfoTextTopGap\relax}%
+  \setlength{\JLUCoverInfoBottomY}{\dimexpr\JLUCoverInfoTopY-\ht\JLUCoverInfoBox-\dp\JLUCoverInfoBox-\JLUCoverInfoBottomGap\relax}%
+}
+% 绘制封面/尾页的浅色答辩信息块。
+% 第一个参数是蓝色块底边，第二个参数是信息块底边。
+% 主体使用 JLUBlue!10；第二个 fill 用页面底色切出一条细边，形成嵌入蓝色块的留白。
+\newcommand{\JLUDrawInfoBand}[2]{%
+  \setlength{\JLUCoverInfoBandTopY}{\dimexpr#1+\JLUCoverInfoInsetDepth\relax}%
+  \setlength{\JLUCoverInfoBandBottomY}{#2}%
+  \setlength{\JLUCoverInfoBandHeight}{\dimexpr\JLUCoverInfoBandTopY-\JLUCoverInfoBandBottomY\relax}%
+  \setlength{\JLUCoverInfoInsetRun}{.5\JLUCoverInfoInsetDepth}%
+  \setlength{\JLUCoverInfoBottomRun}{.5\JLUCoverInfoBandHeight}%
+  \fill[JLUBlue!10]
+    (0,\JLUCoverInfoBandTopY)
+    -- (\JLUCoverInfoTopWidth,\JLUCoverInfoBandTopY)
+    -- (\dimexpr\JLUCoverInfoTopWidth+\JLUCoverInfoBottomRun\relax,\JLUCoverInfoBandBottomY)
+    -- (0,\JLUCoverInfoBandBottomY)
+    -- cycle;
+  \fill[JLULightBlue]
+    (0,\JLUCoverInfoBandTopY)
+    -- (\dimexpr\JLUCoverInfoTopWidth+\JLUCoverInfoEdgeGap\relax,\JLUCoverInfoBandTopY)
+    -- ++ (\JLUCoverInfoInsetRun,-\JLUCoverInfoInsetDepth)
+    -- ++ (-\JLUCoverInfoEdgeGap,0)
+    -- ++ (\dimexpr-\JLUCoverInfoInsetRun-.5\JLUCoverInfoEdgeGap\relax,\dimexpr\JLUCoverInfoInsetDepth-\JLUCoverInfoEdgeGap\relax)
+    -- (0,\dimexpr\JLUCoverInfoBandTopY-\JLUCoverInfoEdgeGap\relax)
+    -- cycle;
+}
+
+\newlength{\JLUHeadlineHeight}
+\setlength{\JLUHeadlineHeight}{.64cm}
+\newlength{\JLUFrameTitleHeight}
+\setlength{\JLUFrameTitleHeight}{.72cm}
+\newlength{\JLUFrameTitleBottom}
+\setlength{\JLUFrameTitleBottom}{\dimexpr\JLUHeadlineHeight+\JLUFrameTitleHeight\relax}
+\newlength{\JLUFrameTitleCenter}
+\setlength{\JLUFrameTitleCenter}{\dimexpr\JLUHeadlineHeight+.5\JLUFrameTitleHeight\relax}
+
+% ---------- Header and footer quick settings ----------
+% 目录页还没有进入任何 section，此时页眉左侧显示 \JLUHeaderIntroText。
+% 默认让它跟封面副标题一致，即“毕业论文答辩”；如需显示别的文字，改下一行。
+\newcommand{\JLUHeaderIntroText}{\ThesisSubtitle}
+
+% 页脚先分成左右两个半区：左半区再均分为姓名和日期，右半区放答辩类型和页码。
+% 右半区内部沿用主模板 .36:.08 的比例，也就是在右半区中按 36:8 分配。
+% 需要改变页脚显示内容时，优先改这三个命令，不必改 footline 模板本体。
+\newcommand{\JLUFooterLeftText}{\insertshortauthor}
+\newcommand{\JLUFooterMiddleText}{\insertshortdate}
+\newcommand{\JLUFooterRightText}{\ThesisSubtitle}
+\newlength{\JLUFootlineLeftSegmentWidth}
+\setlength{\JLUFootlineLeftSegmentWidth}{.25\paperwidth}
+\newlength{\JLUFootlineLeftHalfWidth}
+\setlength{\JLUFootlineLeftHalfWidth}{.5\paperwidth}
+\newlength{\JLUFootlineRightTitleWidth}
+\setlength{\JLUFootlineRightTitleWidth}{.40909\paperwidth}
+\newlength{\JLUFootlinePageWidth}
+\setlength{\JLUFootlinePageWidth}{\dimexpr\paperwidth-\JLUFootlineLeftHalfWidth-\JLUFootlineRightTitleWidth\relax}
+\newlength{\JLUFootlineHeight}
+\setlength{\JLUFootlineHeight}{1.55ex}
+\newlength{\JLUFootlineDepth}
+\setlength{\JLUFootlineDepth}{.45ex}
+\newlength{\JLUFootlineTotalHeight}
+\setlength{\JLUFootlineTotalHeight}{\dimexpr\JLUFootlineHeight+\JLUFootlineDepth\relax}
+\newlength{\JLUFootlineNameCenterX}
+\setlength{\JLUFootlineNameCenterX}{.125\paperwidth}
+\newlength{\JLUFootlineDateCenterX}
+\setlength{\JLUFootlineDateCenterX}{.375\paperwidth}
+\newlength{\JLUFootlineRightTitleCenterX}
+\setlength{\JLUFootlineRightTitleCenterX}{.704545\paperwidth}
+\newlength{\JLUFootlineTextCenterY}
+\setlength{\JLUFootlineTextCenterY}{.5\JLUFootlineTotalHeight}
+
+\pgfdeclarehorizontalshading{jlu@headlineshade}{\JLUHeadlineHeight}{%
+  color(0pt)=(JLUTopNavy);
+  color(.76\paperwidth)=(JLUBlue);
+  color(\paperwidth)=(JLUBlue)}
+\colorlet{JLUHeadlineSlash}{JLUBlue!70!JLUTopNavy}
+
+% ---------- User quick-edit area: section titles ----------
+% 目录页、页眉导航和 \section 标题都读取这一组命令。
+% 修改章节结构时：
+% 1. 先改这里的六个标题；
+% 2. 再到正文区域调整对应的 \section 和 frame；
+% 3. 如果章节数量变化，需要同步修改 \JLUOutline 与 \JLUSectionNavigation。
+\newcommand{\JLUSectionTitleOne}{模板说明}
+\newcommand{\JLUSectionTitleTwo}{正文结构}
+\newcommand{\JLUSectionTitleThree}{常用环境}
+\newcommand{\JLUSectionTitleFour}{图表代码}
+\newcommand{\JLUSectionTitleFive}{答辩内容}
+\newcommand{\JLUSectionTitleSix}{总结致谢}
+\makeatletter
+\newcommand{\JLUSectionNavigationEntry}[2]{%
+  \beamer@section@set@min@width%
+  \box\beamer@sectionbox\hskip1.875ex plus 1fill%
+  \setbox\beamer@sectionbox=\hbox{%
+    \def\insertsectionhead{#2}%
+    \def\insertsectionheadnumber{#1}%
+    \def\insertpartheadnumber{0}%
+    {\usebeamerfont{section in head/foot}\usebeamercolor[fg]{section in head/foot}%
+      \ifnum\c@section=#1%
+        {\usebeamertemplate{section in head/foot}}%
+      \else%
+        {\usebeamertemplate{section in head/foot shaded}}%
+      \fi}%
+  }%
+  \ht\beamer@sectionbox=1.875ex%
+  \dp\beamer@sectionbox=0.75ex%
+}
+\newcommand{\JLUSectionNavigation}[1]{%
+  \ifnum\value{section}=0
+    \hbox to #1{\usebeamerfont{section in head/foot}\color{white}\JLUHeaderIntroText\hfil}%
+  \else
+    \hbox to #1{{%
+      \hskip0pt plus1filll\hskip.3cm%
+      \usebeamerfont{section in head/foot}\usebeamercolor[fg]{section in head/foot}%
+      \setbox\beamer@sectionbox=\hbox{}%
+      \ht\beamer@sectionbox=1.875ex%
+      \dp\beamer@sectionbox=0.75ex%
+      \hskip-1.875ex plus-1fill%
+      \JLUSectionNavigationEntry{1}{\JLUSectionTitleOne}%
+      \JLUSectionNavigationEntry{2}{\JLUSectionTitleTwo}%
+      \JLUSectionNavigationEntry{3}{\JLUSectionTitleThree}%
+      \JLUSectionNavigationEntry{4}{\JLUSectionTitleFour}%
+      \JLUSectionNavigationEntry{5}{\JLUSectionTitleFive}%
+      \JLUSectionNavigationEntry{6}{\JLUSectionTitleSix}%
+      \beamer@section@set@min@width%
+      \box\beamer@sectionbox\hfil\hskip.3cm%
+    }}%
+  \fi%
+}
+\makeatother
+\newcommand{\JLUOutlineEntry}[3]{%
+  \noindent
+  \makebox[.86\textwidth][l]{%
+    \raisebox{.24ex}{%
+      \makebox[.46cm][r]{\color{JLUBlue!78!JLUTopNavy}\JLUHei\fontsize{8.3}{8.8}\selectfont #2}%
+    }%
+    \hspace{.18cm}%
+    {\color{JLUBlue!32}\rule[-.52ex]{.7pt}{2.55ex}}%
+    \hspace{.24cm}%
+    \hyperlink{jlu-section-#1}{%
+      {\usebeamerfont{section in toc}\color{JLUBlue}#3}%
+    }%
+  }%
+  \par\vspace{.24cm}%
+}
+\newcommand{\JLUOutline}{%
+  \begin{minipage}{.86\textwidth}
+    \JLUOutlineEntry{1}{01}{\JLUSectionTitleOne}
+    \JLUOutlineEntry{2}{02}{\JLUSectionTitleTwo}
+    \JLUOutlineEntry{3}{03}{\JLUSectionTitleThree}
+    \JLUOutlineEntry{4}{04}{\JLUSectionTitleFour}
+    \JLUOutlineEntry{5}{05}{\JLUSectionTitleFive}
+    \JLUOutlineEntry{6}{06}{\JLUSectionTitleSix}
+  \end{minipage}%
+}
+
+\newcommand{\JLUReferenceItem}[4]{%
+  \par\noindent
+  \hangindent=.56cm
+  \hangafter=1
+  \makebox[.48cm][l]{%
+    {\rmfamily\fontsize{7.2}{8}\selectfont\color{black}#1}%
+  }%
+  {%
+    \rmfamily\fontsize{7.2}{8}\selectfont
+    {\color{JLUBlue!86!JLUTopNavy}#2. }%
+    {\color{black}#3. }%
+    {\color{JLUBlue!68}#4}%
+  }%
+  \par\vspace{.22cm}%
+}
+
+\newenvironment{JLUReferenceList}{%
+  \vspace{.18cm}
+  \begingroup
+  \setlength{\parskip}{0pt}
+  \setlength{\parindent}{0pt}
+  \leftskip=.10cm
+  \rightskip=.10cm
+}{%
+  \par
+  \endgroup
+}
+
+\newcommand{\JLUThanksPage}{%
+  {%
+    \JLUPrepareCoverLayout
+    \setlength{\JLUThanksTextCenterY}{\dimexpr.5\JLUThanksTitleTopY+.5\JLUThanksTitleBottomY+.5\JLUCoverInfoInsetDepth\relax}%
+    \usebackgroundtemplate{%
+      \JLUPageCanvas{%
+        \fill[JLULightBlue] (0,0) rectangle (\paperwidth,-\paperheight);
+        \path[shade, shading angle=0, left color=JLUBlue, right color=JLUBlue!55!JLUTopNavy]
+          (0,\JLUThanksTitleTopY) rectangle (\paperwidth,\JLUThanksTitleBottomY);
+        \JLUDrawInfoBand{\JLUThanksTitleBottomY}{\dimexpr\JLUThanksTitleBottomY+\JLUCoverInfoInsetDepth-\JLUCoverInfoTextTopGap-\ht\JLUCoverInfoBox-\dp\JLUCoverInfoBox-\JLUCoverInfoBottomGap\relax}
+        \JLUDrawBrand{jlu-thanks}
+        \node[
+          anchor=west,
+          text=white,
+          align=left,
+          inner sep=0pt,
+          outer sep=0pt
+        ] at (.74cm,\JLUThanksTextCenterY) {%
+          {\JLUKai\fontsize{28}{31}\selectfont 谢谢}\\[.20cm]
+          {\JLUKai\fontsize{11.2}{12.2}\selectfont\color{white!88}欢迎各位老师批评指正}%
+        };
+        \node[
+          anchor=north west,
+          text=black,
+          inner sep=0pt,
+          outer sep=0pt
+        ] at (.72cm,\dimexpr\JLUThanksTitleBottomY+\JLUCoverInfoInsetDepth-\JLUCoverInfoTextTopGap\relax) {\usebox{\JLUCoverInfoBox}};
+        \node[
+          anchor=south west,
+          text=black,
+          font=\JLUKai\small
+        ] at ([xshift=.72cm,yshift=.58cm]0,-\paperheight) {\DefenseDate};
+        \JLUDrawCornerMotto{.34}
+      }%
+    }%
+    \begin{frame}[plain]
+    \end{frame}%
+  }%
+}
+
+\newcommand{\JLUHeadlineBackground}{%
+  \begin{pgfpicture}{0pt}{0pt}{\paperwidth}{\JLUHeadlineHeight}
+    \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\JLUHeadlineHeight}}%
+    \pgfusepath{clip}%
+    \pgftext[left,base]{\pgfuseshading{jlu@headlineshade}}%
+    \pgfsetfillcolor{JLUHeadlineSlash}%
+    \pgfsetfillopacity{.72}%
+    \pgfpathmoveto{\pgfpoint{.755\paperwidth}{\JLUHeadlineHeight}}%
+    \pgfpathlineto{\pgfpoint{.79\paperwidth}{\JLUHeadlineHeight}}%
+    \pgfpathlineto{\pgfpoint{.762\paperwidth}{0pt}}%
+    \pgfpathlineto{\pgfpoint{.727\paperwidth}{0pt}}%
+    \pgfpathclose%
+    \pgfusepath{fill}%
+    \pgfsetfillopacity{1}%
+  \end{pgfpicture}%
+}
+
+\newcommand{\JLUPageCanvas}[1]{%
+  \begin{tikzpicture}
+    \useasboundingbox (0,0) rectangle (\paperwidth,-\paperheight);
+    #1%
+  \end{tikzpicture}%
+}
+
+% ---------- Headline and footline ----------
+% 页眉：左侧显示章节导航；右侧显示学校简称和白色校徽。
+% 页脚：左半区姓名/日期等分，右半区按主模板比例分为副标题/页码；
+% 日期和副标题之间使用竖线分割，保持页脚边界干净。
+% 文字内容由上面的 \JLUFooterLeftText 等三个命令控制。
+\makeatletter
+\setbeamertemplate{headline}{%
+  \leavevmode%
+  \hbox to 0pt{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=\JLUHeadlineHeight,dp=0pt]{headline in head/foot}%
+      \rlap{\JLUHeadlineBackground}%
+      \hbox to \paperwidth{%
+        \begin{beamercolorbox}[wd=.76\paperwidth,ht=\JLUHeadlineHeight,dp=0pt,leftskip=.18cm,rightskip=.10cm]{headline in head/foot}%
+          \vbox to \JLUHeadlineHeight{\vfil%
+            \JLUSectionNavigation{\dimexpr.76\paperwidth-.28cm\relax}%
+          \vfil}%
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.24\paperwidth,ht=\JLUHeadlineHeight,dp=0pt,center]{headline in head/foot}%
+          \vbox to \JLUHeadlineHeight{\vfil%
+            \hbox to .24\paperwidth{%
+              \hfil\usebeamerfont{institute in head/foot}\DepartmentShortName\hspace{.13cm}\JLULogo\hfil}%
+          \vfil}%
+        \end{beamercolorbox}%
+      }%
+    \end{beamercolorbox}%
+    \hss%
+  }%
+}
+
+% ---------- Frame title ----------
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip%
+  \hbox to 0pt{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=\JLUFrameTitleHeight,dp=0pt,leftskip=.34cm,rightskip=.34cm]{frametitle}%
+      \vbox to \JLUFrameTitleHeight{\vfil%
+        {\usebeamerfont{frametitle}\insertframetitle%
+          \ifx\insertframesubtitle\@empty%
+          \else%
+            \hspace{.18cm}{\color{white!62}\rule[-.2ex]{.05em}{1.7ex}}\hspace{.15cm}%
+            {\usebeamerfont{framesubtitle}\insertframesubtitle}%
+          \fi}%
+      \vfil}%
+    \end{beamercolorbox}%
+    \hss%
+  }%
+  \vspace*{\JLUFrameTitleHeight}%
+}
+\makeatother
+
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox to \paperwidth{%
+    \begin{tikzpicture}[baseline]
+      \useasboundingbox (0,0) rectangle (\paperwidth,\JLUFootlineTotalHeight);
+      \fill[JLUTopNavy] (0,0) rectangle (\JLUFootlineLeftHalfWidth,\JLUFootlineTotalHeight);
+      \fill[JLUBlue] (\JLUFootlineLeftHalfWidth,0) rectangle (\paperwidth,\JLUFootlineTotalHeight);
+      \draw[white!16,line width=.18pt]
+        (\JLUFootlineLeftSegmentWidth,0) -- (\JLUFootlineLeftSegmentWidth,\JLUFootlineTotalHeight);
+      \draw[white!16,line width=.18pt]
+        (\JLUFootlineLeftHalfWidth,0) -- (\JLUFootlineLeftHalfWidth,\JLUFootlineTotalHeight);
+      \draw[white!14,line width=.18pt]
+        (\dimexpr\JLUFootlineLeftHalfWidth+\JLUFootlineRightTitleWidth\relax,0)
+        -- (\dimexpr\JLUFootlineLeftHalfWidth+\JLUFootlineRightTitleWidth\relax,\JLUFootlineTotalHeight);
+      \node[
+        text=white,
+        font=\usebeamerfont{author in head/foot},
+        inner sep=0pt
+      ] at (\JLUFootlineNameCenterX,\JLUFootlineTextCenterY) {\JLUFooterLeftText};
+      \node[
+        text=white,
+        font=\usebeamerfont{date in head/foot},
+        inner sep=0pt
+      ] at (\JLUFootlineDateCenterX,\JLUFootlineTextCenterY) {\JLUFooterMiddleText};
+      \node[
+        text=white,
+        font=\usebeamerfont{title in head/foot},
+        inner sep=0pt
+      ] at (\JLUFootlineRightTitleCenterX,\JLUFootlineTextCenterY) {\JLUFooterRightText};
+      \node[
+        anchor=east,
+        text=white,
+        font=\usebeamerfont{date in head/foot},
+        inner sep=0pt
+      ] at ([xshift=-.8ex]\paperwidth,\JLUFootlineTextCenterY) {\insertframenumber{} / \inserttotalframenumber};
+    \end{tikzpicture}%
+    \hss%
+  }%
+}
+\setbeamertemplate{navigation symbols}{}
+
+% ---------- Blocks and lists ----------
+\tcbset{
+  jlu beamer block/.style={
+    enhanced,
+    colback=JLUBlockBody,
+    colbacktitle=JLUBlockBody,
+    colframe=JLUBlockLine,
+    boxrule=.45pt,
+    leftrule=2.2pt,
+    arc=1mm,
+    boxsep=0pt,
+    left=1.6mm,
+    right=1.8mm,
+    top=.9mm,
+    bottom=1.2mm,
+    toptitle=.45mm,
+    bottomtitle=.45mm,
+    titlerule=.3pt,
+    before skip=.7ex,
+    after skip=.9ex,
+    fonttitle=\JLUKai\bfseries,
+    coltitle=JLUTitleBlue,
+    title style={draw=none,fill=JLUBlockBody}
+  },
+  jlu beamer example block/.style={
+    jlu beamer block,
+    colback=JLULightBlue,
+    colbacktitle=JLULightBlue,
+    colframe=JLUBlue!62!JLUTopNavy,
+    coltitle=JLUBlue!78!JLUTopNavy,
+    title style={draw=none,fill=JLULightBlue}
+  },
+  jlu beamer alert block/.style={
+    jlu beamer block,
+    colback=red!4,
+    colbacktitle=red!4,
+    colframe=red!58!JLUTopNavy,
+    coltitle=red!58!JLUTopNavy,
+    title style={draw=none,fill=red!4}
+  }
+}
+\setbeamertemplate{block begin}{%
+  \begin{tcolorbox}[jlu beamer block,title=\insertblocktitle]%
+}
+\setbeamertemplate{block end}{%
+  \end{tcolorbox}%
+}
+\setbeamertemplate{block example begin}{%
+  \begin{tcolorbox}[jlu beamer example block,title=\insertblocktitle]%
+}
+\setbeamertemplate{block example end}{%
+  \end{tcolorbox}%
+}
+\setbeamertemplate{block alerted begin}{%
+  \begin{tcolorbox}[jlu beamer alert block,title=\insertblocktitle]%
+}
+\setbeamertemplate{block alerted end}{%
+  \end{tcolorbox}%
+}
+\setbeamertemplate{itemize item}{\color{JLUBlue}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{black}$\bullet$}
+\setbeamertemplate{enumerate item}{%
+  \tikz[baseline=(n.base)]\node[circle,fill=JLUBlue,text=white,inner sep=1.2pt,font=\scriptsize] (n) {\insertenumlabel};%
+}
+
+% ---------- Helper pages ----------
+\newcommand{\JLUChapterPage}[2]{%
+  {%
+    \usebackgroundtemplate{%
+      \JLUPageCanvas{%
+        \fill[JLULightBlue] (0,0) rectangle (\paperwidth,-\paperheight);
+        \fill[JLUBlue] (0,-2.45cm) rectangle (\paperwidth,-4.22cm);
+        \path[shade, shading angle=0, left color=JLUBlue!35!JLUTopNavy, right color=JLUTopNavy]
+          (.72\paperwidth,-2.45cm)
+          -- (.82\paperwidth,-2.45cm)
+          -- (.72\paperwidth,-4.22cm)
+          -- (.62\paperwidth,-4.22cm)
+          -- cycle;
+        \node[
+          anchor=west,
+          text=white,
+          font=\JLUKai\Large
+        ] at (.75cm,-2.88cm) {#1};
+        \node[
+          anchor=west,
+          text=white,
+          text width=.82\paperwidth,
+          font=\JLUKai\fontsize{23}{25}\selectfont
+        ] at (.75cm,-3.73cm) {#2};
+        \JLUDrawCornerMotto{.28}
+      }%
+    }%
+    \begin{frame}[plain]
+      \hypertarget{jlu-section-\insertsectionnumber}{}
+    \end{frame}%
+  }%
+}
+
+\newcommand{\JLUFigurePlaceholder}[1]{%
+  \begin{center}
+    \begin{tikzpicture}
+      \draw[JLUBlue,rounded corners=3pt,line width=.5pt]
+        (0,0) rectangle (.78\textwidth,3.0cm);
+      \node[align=center,text=JLUBlue,text width=.70\textwidth,font=\JLUKai\small]
+        at (.39\textwidth,1.5cm) {#1};
+    \end{tikzpicture}
+  \end{center}
+}
+
+\AtBeginSection[]{
+  \JLUChapterPage{第 \insertsectionnumber 部分}{\insertsection}
+}
+
+% ---------- Document content ----------
+% 从这里开始是实际幻灯片内容。
+% 新增页面：复制一个 \begin{frame}{页面标题} ... \end{frame}。
+% 新增章节：添加 \section{章节名}；若希望目录和页眉自动同步，请同时维护上面的章节标题命令。
+% 普通答辩建议每页保留一个核心观点，图表页优先使用 columns 或 block 保持版面稳定。
+\begin{document}
+
+{%
+  \JLUPrepareCoverLayout
+  \usebackgroundtemplate{%
+    \JLUPageCanvas{%
+      \fill[JLULightBlue] (0,0) rectangle (\paperwidth,-\paperheight);
+      \path[shade, shading angle=0, left color=JLUBlue, right color=JLUBlue!55!JLUTopNavy]
+        (0,-2.06cm) rectangle (\paperwidth,\JLUCoverTitleBottomY);
+      \JLUDrawInfoBand{\JLUCoverTitleBottomY}{\JLUCoverInfoBottomY}
+      \JLUDrawBrand{jlu-title}
+      \node[
+        anchor=north west,
+        text=white,
+        align=left,
+        inner sep=0pt,
+        outer sep=0pt
+      ] at (.74cm,\JLUCoverTitleTopY) {\usebox{\JLUCoverTitleBox}};
+      \draw[white!72,line width=.45pt]
+        (.55\paperwidth,\JLUCoverTitleSecondLineY)
+        -- (.78\paperwidth,\JLUCoverTitleSecondLineY);
+      \node[
+        anchor=west,
+        text=white!88,
+        font=\JLUKai\fontsize{9.4}{10.4}\selectfont
+      ] at (.80\paperwidth,\JLUCoverTitleSecondLineY) {\ThesisSubtitle};
+      \node[
+        anchor=north west,
+        text=black,
+        inner sep=0pt,
+        outer sep=0pt
+      ] at (.72cm,\JLUCoverInfoTopY) {\usebox{\JLUCoverInfoBox}};
+      \node[
+        anchor=south west,
+        text=black,
+        font=\JLUKai\small
+      ] at ([xshift=.72cm,yshift=.58cm]0,-\paperheight) {\DefenseDate};
+      \JLUDrawCornerMotto{.34}
+    }%
+  }%
+  \begin{frame}[plain]
+  \end{frame}%
+}%
+
+\begin{frame}{目录}
+  \vspace{.45cm}
+  \JLUOutline
+\end{frame}
+
+\section{\JLUSectionTitleOne}
+
+\begin{frame}{关于本模板}
+  \begin{block}{模板定位}
+    本文件是吉林大学毕业论文答辩 Beamer 校级模板示例。正文内容为占位演示，使用时请替换为自己的论文内容。
+  \end{block}
+
+  \begin{itemize}
+    \item 编译方式：使用 XeLaTeX 编译。
+    \item 替换位置：论文信息、章节标题、正文 frame、图表和参考文献。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{快速替换信息}
+  \begin{block}{封面信息}
+    请在文件开头的论文信息区替换题目、答辩人、学号、指导教师、专业和答辩日期。
+  \end{block}
+
+  \begin{itemize}
+    \item \JLUEmph{题目}：建议控制在两行以内。
+    \item \JLUEmph{副标题}：用于封面右侧、目录页左上角和页脚第三栏，默认写作“毕业论文答辩”。
+    \item \JLUEmph{正文}：建议每页只保留一个核心观点，避免从论文中整段复制。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{推荐答辩结构}
+  \begin{block}{常见组织方式}
+    如果没有特殊要求，可以按“背景问题、理论方法、实验结果、案例分析、总结展望”的顺序组织。
+  \end{block}
+
+  \begin{enumerate}
+    \item 引出研究问题：说明问题来源、研究意义和主要困难。
+    \item 展示核心工作：说明主要方法、关键公式或主要模型。
+    \item 证明工作有效：用图表展示实验、案例和结论。
+  \end{enumerate}
+\end{frame}
+
+\section{\JLUSectionTitleTwo}
+
+\begin{frame}{目录与章节页}
+  \begin{block}{自动结构}
+    本模板提供封面页、目录页、章节过渡页、正文页、参考文献页和结束页。
+  \end{block}
+
+  \begin{itemize}
+    \item 使用 \texttt{\textbackslash section} 创建一个新的答辩部分。
+    \item 目录页会读取统一定义的章节标题。
+    \item 章节过渡页由 \texttt{\textbackslash AtBeginSection} 自动生成。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{列表与强调}
+  \begin{block}{无序列表}
+    适合放研究背景、问题来源、实验设置和结果解释。
+  \end{block}
+
+  \begin{itemize}
+    \item 普通信息：用常规列表说明背景和条件。
+    \item \JLUEmph{重要信息}：用黑体强调关键词。
+    \item \alert{关键结论}：用 Beamer 的 alert 标记需要重点说明的结论。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{分栏排版}
+  \begin{columns}[T,totalwidth=\textwidth]
+    \begin{column}{.46\textwidth}
+      \begin{block}{左栏}
+        可放研究问题、符号解释或方法流程。
+      \end{block}
+
+      \begin{itemize}
+        \item 内容一
+        \item 内容二
+        \item 内容三
+      \end{itemize}
+    \end{column}
+    \begin{column}{.46\textwidth}
+      \begin{block}{右栏}
+        可放图表说明、实验结论或补充解释。
+      \end{block}
+
+      \begin{enumerate}
+        \item 步骤一
+        \item 步骤二
+        \item 步骤三
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\section{\JLUSectionTitleThree}
+
+\begin{frame}{块环境示例}
+  \begin{block}{普通 block}
+    用于说明定义、背景、方法说明或页面提示。
+  \end{block}
+
+  \begin{exampleblock}{example block}
+    用于展示示例、实验现象或模板用法。
+  \end{exampleblock}
+
+  \begin{alertblock}{alert block}
+    用于强调答辩中需要老师注意的关键结论。
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{数学公式示例}
+  \begin{block}{行间公式}
+    数学答辩中建议只放最核心的公式，并在公式下方解释符号含义。
+  \end{block}
+
+  \begin{equation*}
+    F(x)=\int_{a}^{b} f(t,x)\,\mathrm{d}t,
+    \qquad
+    \nabla F(x)=0.
+  \end{equation*}
+
+  \begin{itemize}
+    \item $x$ 表示待求变量或模型参数。
+    \item $F(x)$ 表示目标函数、统计量或评价指标。
+    \item 公式后的解释比复杂推导更适合答辩场景。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{表格示例}
+  \begin{block}{三线表}
+    推荐使用 \texttt{booktabs} 风格的三线表，表格内容应服务于一个明确结论。
+  \end{block}
+
+  \begin{table}
+    \centering
+    \caption{示例表格}
+    \begin{tabular}{lcc}
+      \toprule
+      项目 & 指标一 & 指标二 \\
+      \midrule
+      方法一 & 0.812 & 0.764 \\
+      方法二 & 0.846 & 0.792 \\
+      示例方法 & \alert{0.879} & \alert{0.823} \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\section{\JLUSectionTitleFour}
+
+\begin{frame}{图示占位}
+  \JLUFigurePlaceholder{此处替换为论文中的示意图、流程图、实验曲线、结果截图或案例图}
+
+  \begin{itemize}
+    \item 图片应尽量清晰，避免文字过小。
+    \item 一页只解释一个图的核心信息。
+    \item 图注可以简短说明图中变量或实验设置。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{代码示例}
+  \begin{block}{代码环境}
+    如需展示算法实现，可使用 \texttt{lstlisting}。答辩中建议只展示关键片段。
+  \end{block}
+
+\begin{lstlisting}[language=Python,basicstyle=\ttfamily\scriptsize]
+def model_step(x, theta):
+    score = objective(x, theta)
+    return score
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{图片与表格并排}
+  \begin{columns}[T,totalwidth=\textwidth]
+    \begin{column}{.48\textwidth}
+      \JLUFigurePlaceholder{图示占位}
+    \end{column}
+    \begin{column}{.46\textwidth}
+      \begin{table}
+        \centering
+        \caption{配套表格}
+        \begin{tabular}{lc}
+          \toprule
+          项目 & 数值 \\
+          \midrule
+          指标一 & 0.86 \\
+          指标二 & 0.79 \\
+          指标三 & 0.92 \\
+          \bottomrule
+        \end{tabular}
+      \end{table}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\section{\JLUSectionTitleFive}
+
+\begin{frame}{研究背景页占位}
+  \begin{block}{替换提示}
+    用 3--4 条说明研究问题从哪里来、为什么值得研究，以及本文关注的核心困难。
+  \end{block}
+
+  \begin{itemize}
+    \item 背景来源：请替换为论文研究对象或实际问题。
+    \item 研究意义：请替换为理论价值或应用价值。
+    \item 关键困难：请替换为本文试图解决的主要问题。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{方法与实验页占位}
+  \begin{block}{替换提示}
+    先讲方法主线，再讲实验设计。可用流程图或表格压缩细节。
+  \end{block}
+
+  \begin{enumerate}
+    \item 方法：请替换为模型、算法、定理或证明思路。
+    \item 实验：请替换为数据来源、评价指标和对比方法。
+    \item 结论：请替换为实验图表支持的主要判断。
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{结论与展望页占位}
+  \begin{block}{替换提示}
+    答辩结论建议控制在 3 条以内，每条对应前文一个主要贡献或实验发现。
+  \end{block}
+
+  \begin{itemize}
+    \item 主要结论一：请替换为本文完成的主要工作。
+    \item 主要结论二：请替换为理论、实验或应用层面的发现。
+    \item 后续展望：请替换为未来可以继续改进的方向。
+  \end{itemize}
+\end{frame}
+
+\section{\JLUSectionTitleSix}
+
+\begin{frame}{使用前检查}
+  \begin{block}{建议检查项}
+    正式答辩前建议完整编译并翻看 PDF，重点检查封面、页眉导航、图表清晰度和参考文献格式。
+  \end{block}
+
+  \begin{enumerate}
+    \item 替换所有占位信息和示例文字。
+    \item 检查图片路径、表格宽度和公式是否超出页面。
+    \item 确认页数、目录、参考文献和结束页符合学校或学院要求。
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{致谢页说明}
+  \begin{block}{结束页}
+    模板末尾提供统一风格的结束页，包含“谢谢”、提示语和答辩信息。可根据需要修改结束页文字。
+  \end{block}
+
+  \begin{itemize}
+    \item 正式答辩稿中可保留简洁的致谢页。
+    \item 如学校或学院要求固定结束语，请在 `\textbackslash JLUThanksPage` 中统一修改。
+    \item 本页之后即为参考文献页和结束页。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{参考文献}
+  \scriptsize
+  \bibliographystyle{gbt7714-numerical}
+  \nocite{*}
+  \bibliography{references}
+\end{frame}
+
+\JLUThanksPage
+
+\end{document}
