@@ -1,4 +1,4 @@
-# 吉林大学数学学院毕业论文答辩 Beamer 模板
+# 吉林大学 Beamer 演示模板库
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![LaTeX](https://img.shields.io/badge/Language-LaTeX-blue.svg)](https://www.latex-project.org/)
@@ -6,9 +6,9 @@
 
 ## 📖 项目简介
 
-本项目提供了一套**开箱即用**的吉林大学数学学院毕业论文答辩 Beamer 演示模板。
+本项目提供了吉林大学**校级**及**学院级**毕业论文答辩 Beamer 演示模板。用户可根据需要选择不同层级的模板，内置封面页、目录页、章节过渡页、正文页、参考文献页和结束页，只需替换论文信息和正文内容即可生成规范、美观的答辩 PPT。
 
-模板采用吉林大学数学学院视觉标识配色，内置封面页、目录页、章节过渡页、正文页、参考文献页和结束页，使用者只需替换论文信息和正文内容即可生成规范、美观的答辩 PPT。
+当前已完成**数学学院级模板**的开发。
 
 **模板特性**：
 - 🎨 吉大蓝主题色，封面 / 结束页 / 页眉页脚统一视觉风格
@@ -22,33 +22,76 @@
 
 ## 📂 项目结构说明
 
-请务必保持以下目录结构，**不要随意删除或移动文件夹**，否则编译会报错。
+本项目采用**模板库架构**，包含两个独立的模板。每个模板均是完整的、独立可用的项目。
 
 ```text
 jlu-thesis-defense-beamer-template/
-├── assets/                                # [资源] 模板 Logo 图片
-│   ├── jlu_math_logo_navy.png             #   深色 Logo（封面/结束页）
-│   └── jlu_math_logo_white.png            #   白色 Logo（页眉）
-├── fonts/                                 # [核心] 中文字体文件
-│   ├── SimHei.TTF                         #   黑体（标题强调）
-│   ├── SimKai.TTF                         #   楷体（正文主字体）
-│   └── SimSun.TTC                         #   宋体（等宽备用）
-├── images/                                # [资源] 用户插图文件夹
-│   └── .gitkeep                           #   占位，保证空目录被 Git 跟踪
+│
+├── jlu/                                   # [校级模板] 吉林大学通用模板（开发中）
+│   ├── fonts/                             #   中文字体文件（本地副本）
+│   │   ├── SimHei.TTF
+│   │   ├── SimKai.TTF
+│   │   └── SimSun.TTC
+│   ├── assets/                            #   Logo 及资源文件
+│   ├── images/                            #   用户插图文件夹
+│   ├── references.bib                     #   参考文献数据库
+│   └── .latexmkrc                         #   编译配置
+│
+├── math/                                  # [学院级模板] 数学学院毕业论文答辩模板
+│   ├── fonts/                             #   中文字体文件（本地副本）
+│   │   ├── SimHei.TTF
+│   │   ├── SimKai.TTF
+│   │   └── SimSun.TTC
+│   ├── assets/                            #   Logo 及资源文件
+│   ├── images/                            #   用户插图文件夹
+│   ├── math_defense.tex                   #   【主文件】模板入口
+│   ├── math_defense.pdf                   #   编译预览
+│   ├── references.bib                     #   参考文献数据库
+│   └── .latexmkrc                         #   编译配置
+│
+├── tmp/                                   # 参考资源目录（第三方模板示例）
+├── fonts/                                 # [已废弃] 根目录字体文件（保留兼容）
 ├── .gitignore                             # Git 忽略规则
-├── .latexmkrc                             # latexmk 编译配置
 ├── LICENSE                                # MIT 开源许可证
-├── README.md                              # 本说明文件
-├── references.bib                         # [数据] 参考文献数据库
-├── jlu_math_thesis_defense_beamer.tex     # [入口] 模板主文件
-└── jlu_math_thesis_defense_beamer.pdf     # 当前预览 PDF
+└── README.md                              # 本说明文件
 ```
 
-> **说明**：编译产生的辅助文件（`.aux`、`.log`、`.nav`、`.out`、`.snm`、`.toc`、`.vrb`、`.synctex.gz`、`.bbl`、`.blg` 等）已在 `.gitignore` 中排除，不会提交到仓库。
+**说明**：
+- 每个模板目录（`jlu/`、`math/`）都包含独立的 `fonts/` 副本，确保目录完全独立且可移植。
+- 编译产生的辅助文件（`.aux`、`.log`、`.nav` 等）已在 `.gitignore` 中排除。
 
 ---
 
-## 🛠️ 环境准备
+## 🛠️ 快速开始
+
+### 数学学院模板（Math Template）
+
+进入 `math/` 目录，使用下述方法之一编译 `math_defense.tex`：
+
+**方法 1：一键编译（推荐）**
+
+```bash
+cd math
+latexmk math_defense.tex
+```
+
+**方法 2：手动编译链**
+
+```bash
+cd math
+xelatex math_defense.tex
+bibtex  math_defense
+xelatex math_defense.tex
+xelatex math_defense.tex
+```
+
+**方法 3：VS Code + LaTeX Workshop**
+
+1. 在 VS Code 中打开 `math/math_defense.tex`
+2. 点击左侧栏 TeX 图标，选择 `XeLaTeX -> BibTeX -> XeLaTeX × 2` recipe
+3. 点击编译按钮
+
+编译完成后，查看 `math/math_defense.pdf` 预览效果。
 
 你可以选择**本地安装**（推荐长期使用）或**在线编辑**（Overleaf，推荐不想安装软件的同学）。
 
@@ -122,29 +165,38 @@ jlu-thesis-defense-beamer-template/
 
 ---
 
-## 🔨 编译方法
+## � 环境要求与安装
 
-本模板使用 **XeLaTeX** 编译。完整编译链如下：
+### 系统配置
+
+本项目使用 **XeLaTeX** 编译，需要安装 TeX 发行版：
+
+- **macOS**：`brew install --cask mactex` 或下载 [MacTeX](https://www.tug.org/mactex/)
+- **Windows/Linux**：下载 [TeX Live](https://www.tug.org/texlive/) 或使用包管理器
+
+### 编辑器配置
+
+**VS Code（推荐）**
+- 安装 [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) 插件
+- 配置 XeLaTeX 编译器，参考 [官方文档](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile)
+
+**Overleaf（在线）**
+- 将 `math/` 目录打包上传，设置编译器为 **XeLaTeX**
+
+### latexmk 配置（可选）
+
+项目已包含 `.latexmkrc`，可自动处理完整编译链。安装 `latexmk`：
 
 ```bash
-xelatex jlu_math_thesis_defense_beamer.tex
-bibtex  jlu_math_thesis_defense_beamer
-xelatex jlu_math_thesis_defense_beamer.tex
-xelatex jlu_math_thesis_defense_beamer.tex
+brew install latexmk          # macOS
+# 或
+apt-get install latexmk       # Ubuntu/Debian
 ```
 
-> ⚠️ **不要只运行一次 xelatex**。Beamer 的目录、页眉导航、PDF 书签和总页数需要至少两轮编译才能稳定。加入参考文献后还需要 bibtex 那一步。
-
-如果安装了 `latexmk`，也可以一键编译（项目已配置 `.latexmkrc`）：
+清除编译产物：
 
 ```bash
-latexmk jlu_math_thesis_defense_beamer.tex
-```
-
-清除辅助文件：
-
-```bash
-latexmk -c
+cd math && latexmk -c
 ```
 
 ---
