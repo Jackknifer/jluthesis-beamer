@@ -33,22 +33,20 @@
 
 \begin{frame}[plain]
   \begin{tikzpicture}[remember picture,overlay]
-    \fill[white] (current page.south west) rectangle (current page.north east);
-    \fill[JLULightBlue] ([yshift=-1.62cm]current page.north west)
-      rectangle ([yshift=-1.72cm]current page.north east);
+    \fill[JLULightBlue] (current page.south west) rectangle (current page.north east);
 
-    \node[
-      anchor=north west,
-      inner sep=0pt,
-      outer sep=0pt
-    ] (jlu-test-logo) at ([xshift=.78cm,yshift=-.44cm]current page.north west)
-      {\includegraphics[height=.92cm]{assets/jlu_logo_navy.png}};
     \node[
       anchor=west,
       inner sep=0pt,
       outer sep=0pt
-    ] at ([xshift=.18cm]jlu-test-logo.east)
-      {\includegraphics[height=.56cm]{assets/jlu_name_blue.png}};
+    ] (jlu-test-logo) at ([xshift=.28cm,yshift=-.78cm]current page.north west)
+      {\includegraphics[height=1.08cm]{assets/jlu_logo_navy.png}};
+    \node[
+      anchor=west,
+      inner sep=0pt,
+      outer sep=0pt
+    ] at ([xshift=.16cm]jlu-test-logo.east)
+      {\includegraphics[height=.66cm]{assets/jlu_name_blue.png}};
 
     \path[fill=JLUBlue]
       ([yshift=-2.56cm]current page.north west)
