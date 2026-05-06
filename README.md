@@ -76,7 +76,44 @@ jlu-thesis-defense-beamer-template/
 
 - 安装插件 [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop)。
 - **配置教程**：参考 [VS Code 配置 LaTeX - 知乎](https://zhuanlan.zhihu.com/p/166523064)。
-- 编译方式：使用侧边栏 TeX 面板中的 `latexmk (xelatex)` recipe。
+- 安装插件后，需要在 VS Code 的 `settings.json` 中配置编译链。按 `Cmd+Shift+P`（macOS）或 `Ctrl+Shift+P`（Windows/Linux），搜索 `Preferences: Open User Settings (JSON)`，添加以下配置：
+
+```json
+{
+  "latex-workshop.latex.tools": [
+    {
+      "name": "xelatex",
+      "command": "xelatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "bibtex",
+      "command": "bibtex",
+      "args": [
+        "%DOCFILE%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "XeLaTeX -> BibTeX -> XeLaTeX × 2",
+      "tools": [
+        "xelatex",
+        "bibtex",
+        "xelatex",
+        "xelatex"
+      ]
+    }
+  ]
+}
+```
+
+- 编译方式：点击左侧边栏 TeX 图标（或按 `Cmd+Alt+B`），选择 **`XeLaTeX -> BibTeX -> XeLaTeX × 2`** recipe 进行编译。
 
 **选项 B：TeXstudio（适合新手）**
 
