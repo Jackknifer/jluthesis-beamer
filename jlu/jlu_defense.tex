@@ -129,6 +129,11 @@
 \newcommand{\JLULogo}{%
   \raisebox{\dimexpr-.5\height+.42ex\relax}{\includegraphics[height=\JLUHeadlineHeight]{assets/jlu_logo_white.png}}%
 }
+\newcommand{\JLUHeaderBrand}{%
+  \raisebox{\dimexpr-.5\height+.42ex\relax}{\includegraphics[height=.34cm]{assets/jlu_name_white.png}}%
+  \hspace{.12cm}%
+  \JLULogo%
+}
 \newcommand{\JLUDrawBrand}[1]{%
   \node[
     anchor=west,
@@ -141,7 +146,7 @@
     inner sep=0pt,
     outer sep=0pt
   ] at ([xshift=.16cm]#1-logo.east)
-    {\includegraphics[height=.58cm]{assets/jlu_name_navy.png}};
+    {\includegraphics[height=.66cm]{assets/jlu_name_blue.png}};
 }
 \newcommand{\JLUDrawCornerMotto}[1]{%
   \node[
@@ -150,7 +155,7 @@
     outer sep=0pt,
     opacity=#1
   ] at ([xshift=-.55cm,yshift=.50cm]\paperwidth,-\paperheight)
-    {\includegraphics[width=2.62cm]{assets/jlu_motto_navy.png}};
+    {\includegraphics[width=3.55cm]{assets/jlu_motto_navy.png}};
 }
 
 % ---------- Cover and ending page layout knobs ----------
@@ -216,11 +221,11 @@
       \raggedright
       {\JLUKai\fontsize{8.8}{10.2}\selectfont
         \begin{tabular}{@{}r@{\hspace{.34cm}}l@{}}
-          {\color{JLUBlue!70!JLUTopNavy}\JLUHei 答辩人} & \AuthorName \\
-          {\color{JLUBlue!70!JLUTopNavy}\JLUHei 学号} & \StudentID \\
-          {\color{JLUBlue!70!JLUTopNavy}\JLUHei 指导教师} & \SupervisorName \\
-          {\color{JLUBlue!70!JLUTopNavy}\JLUHei 学校} & \DepartmentName \\
-          {\color{JLUBlue!70!JLUTopNavy}\JLUHei 专业} & \MajorName
+          {\color{JLUBlue!70!JLUTopNavy}答辩人：} & \AuthorName \\
+          {\color{JLUBlue!70!JLUTopNavy}学号：} & \StudentID \\
+          {\color{JLUBlue!70!JLUTopNavy}指导教师：} & \SupervisorName \\
+          {\color{JLUBlue!70!JLUTopNavy}学校：} & \DepartmentName \\
+          {\color{JLUBlue!70!JLUTopNavy}专业：} & \MajorName
         \end{tabular}}%
     }%
   }%
@@ -494,7 +499,7 @@
         \begin{beamercolorbox}[wd=.24\paperwidth,ht=\JLUHeadlineHeight,dp=0pt,center]{headline in head/foot}%
           \vbox to \JLUHeadlineHeight{\vfil%
             \hbox to .24\paperwidth{%
-              \hfil\usebeamerfont{institute in head/foot}\DepartmentShortName\hspace{.13cm}\JLULogo\hfil}%
+              \hfil\JLUHeaderBrand\hfil}%
           \vfil}%
         \end{beamercolorbox}%
       }%

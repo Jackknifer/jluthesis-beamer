@@ -101,7 +101,7 @@ xelatex <main>.tex
 `assets/` 中保留了原始高清图片，也包含模板直接引用的透明 PNG：
 
 - 数学学院模板保留 `jlu_math_logo_source.png`，实际使用 `jlu_math_logo_navy.png` 和 `jlu_math_logo_white.png`。
-- 校级模板保留 `jd-xhh-2.jpg`、`jd-xm.jpg`、`jd-xx.jpg`，实际使用 `jlu_logo_navy.png`、`jlu_logo_white.png`、`jlu_name_navy.png` 和 `jlu_motto_navy.png`。
+- 校级模板保留 `jd-xhh-2.jpg`、`jd-xm.jpg`、`jd-xx.jpg`，实际使用 `jlu_logo_navy.png`、`jlu_logo_white.png`、`jlu_name_blue.png`、`jlu_name_white.png` 和 `jlu_motto_navy.png`。
 
 `images/` 留给使用者放自己的图表、实验结果和插图。
 
