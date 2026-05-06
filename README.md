@@ -87,23 +87,7 @@ jlu-thesis-defense-beamer-template/
 
 ## 🔨 编译方法
 
-### 推荐：使用 latexmk（一键编译）
-
-项目已配置 `.latexmkrc`，会自动多轮运行 XeLaTeX + BibTeX，直到交叉引用稳定：
-
-```bash
-latexmk jlu_math_thesis_defense_beamer.tex
-```
-
-清除辅助文件：
-
-```bash
-latexmk -c
-```
-
-### 手动编译
-
-如果不使用 latexmk，需按以下顺序手动执行：
+本模板使用 **XeLaTeX** 编译。完整编译链如下：
 
 ```bash
 xelatex jlu_math_thesis_defense_beamer.tex
@@ -114,58 +98,16 @@ xelatex jlu_math_thesis_defense_beamer.tex
 
 > ⚠️ **不要只运行一次 xelatex**。Beamer 的目录、页眉导航、PDF 书签和总页数需要至少两轮编译才能稳定。加入参考文献后还需要 bibtex 那一步。
 
----
+如果安装了 `latexmk`，也可以一键编译（项目已配置 `.latexmkrc`）：
 
-## 🚀 快速上手
-
-### 1. 修改论文信息
-
-打开 `jlu_math_thesis_defense_beamer.tex`，找到"User quick-edit area: thesis information"区域（约第 32–59 行），将以下命令替换为自己的信息：
-
-```latex
-\newcommand{\ThesisTitle}{你的论文题目}
-\newcommand{\ThesisSubtitle}{毕业论文答辩}
-\newcommand{\AuthorName}{你的姓名}
-\newcommand{\StudentID}{你的学号}
-\newcommand{\SupervisorName}{指导教师姓名}
-\newcommand{\DepartmentName}{吉林大学数学学院}
-\newcommand{\MajorName}{你的专业名称}
-\newcommand{\DefenseDate}{2026 年 X 月 X 日}
+```bash
+latexmk jlu_math_thesis_defense_beamer.tex
 ```
 
-### 2. 修改章节标题
+清除辅助文件：
 
-找到"User quick-edit area: section titles"区域（约第 279–290 行），修改六个章节标题：
-
-```latex
-\newcommand{\JLUSectionTitleOne}{研究背景}
-\newcommand{\JLUSectionTitleTwo}{理论方法}
-\newcommand{\JLUSectionTitleThree}{实验设计}
-\newcommand{\JLUSectionTitleFour}{结果分析}
-\newcommand{\JLUSectionTitleFive}{结论展望}
-\newcommand{\JLUSectionTitleSix}{致谢}
-```
-
-> 如果章节数量需要增减，请同时修改 `\JLUOutline` 和 `\JLUSectionNavigation` 中的条目。
-
-### 3. 编写正文
-
-在 `\begin{document}` 之后的正文区域，替换各 `\section` 下的 `frame` 内容：
-
-```latex
-\section{\JLUSectionTitleOne}
-
-\begin{frame}{研究背景与问题}
-  \begin{block}{核心问题}
-    简要说明研究问题的来源与意义。
-  \end{block}
-
-  \begin{itemize}
-    \item 背景一：...
-    \item 背景二：...
-    \item \JLUEmph{关键难点}：...
-  \end{itemize}
-\end{frame}
+```bash
+latexmk -c
 ```
 
 ---
@@ -295,50 +237,6 @@ def model_step(x, theta):
 \JLUEmph{黑体强调}     % 切换为黑体
 \alert{蓝色高亮}        % Beamer alert 样式
 ```
-
----
-
-## 🎨 自定义与进阶
-
-### 主题颜色
-
-所有颜色集中定义在"Theme colors"区域（约第 61–71 行）。修改配色时优先调整这一组：
-
-| 颜色名 | 用途 | 默认值 |
-|--------|------|--------|
-| `JLUBlue` | 主蓝色块、结构色 | `RGB(21,71,166)` |
-| `JLUTopNavy` | 深蓝页眉/页脚 | `RGB(8,33,82)` |
-| `JLUTitleBlue` | 标题栏背景 | `RGB(19,64,150)` |
-| `JLULightBlue` | 浅底色背景 | `RGB(238,244,252)` |
-| `JLUBlockBody` | block 体背景 | `RGB(231,235,242)` |
-| `JLUBlockLine` | block 左边线 | `RGB(63,105,183)` |
-
-### 页眉页脚
-
-- **页眉左侧**：章节导航，自动从 `\section` 读取
-- **页眉右侧**：`\DepartmentShortName` + 白色 Logo
-- **页脚**：由 `\JLUFooterLeftText`、`\JLUFooterMiddleText`、`\JLUFooterRightText` 控制，默认分别显示答辩人、日期、副标题
-
-修改页脚内容只需改这三个命令（约第 247–249 行），不必改 footline 模板本体。
-
-### 封面布局参数
-
-封面布局由一组 `\JLUCover*` 长度参数控制（约第 133–177 行）。模板使用不可见盒子预排标题和信息，再计算蓝色块和浅色梯形的位置。标题行数变化时，信息块会自动跟随，通常不需要手动调整。
-
-如需微调：
-- `\JLUCoverTitleWidth`：主标题文本宽度（越小越容易换行）
-- `\JLUCoverTitleTopY`：主标题上边缘高度（数值更负会整体下移）
-- `\JLUCoverInfoInsetDepth`：梯形向蓝色标题块嵌入的深度
-
-### 字体配置
-
-模板默认从 `fonts/` 文件夹加载本地字体，确保跨平台一致性：
-
-```latex
-\setCJKmainfont[Path=fonts/,BoldFont=SimHei.TTF]{SimKai.TTF}
-```
-
-如需使用系统字体，去掉 `Path=fonts/`，并把字体名改为系统中的实际名称。
 
 ---
 
