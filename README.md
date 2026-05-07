@@ -4,41 +4,40 @@
 [![LaTeX](https://img.shields.io/badge/Language-LaTeX-blue.svg)](https://www.latex-project.org/)
 [![XeLaTeX](https://img.shields.io/badge/Compiler-XeLaTeX-informational.svg)](https://tug.org/xetex/)
 
-本仓库用于维护两个相互独立、可单独打包使用的吉林大学毕业论文答辩 Beamer 正式模板，并附带一个校级传统封面对比测试模板：
+本仓库维护三个可独立打包、独立编译的吉林大学毕业论文答辩 Beamer 模板：
 
-- `jlu/`：吉林大学校级通用模板。
+- `jlu/`：吉林大学校级模板。
 - `math/`：吉林大学数学学院模板。
-- `jlu_test/`：校级模板复制版，使用传统封面/尾页，用于与正式封面方案对比。
+- `jlu_v2/`：吉林大学模板 2，使用传统居中封面和统一尾页。
 
-各模板目录都内置封面页、目录页、章节过渡页、正文页、参考文献页和结束页。使用者通常只需要替换论文信息、章节标题、正文内容、图片和参考文献。
+每个模板目录都包含完整的字体、素材、图片目录、参考文献文件、编译配置、主 `.tex` 文件和预览 PDF。使用者通常只需要替换论文信息、章节标题、正文内容、图片和参考文献。
 
 ## 项目结构
 
 ```text
 jlu-thesis-defense-beamer-template/
-├── jlu/                         # 校级模板
+├── jlu/                         # 吉林大学校级模板
 │   ├── assets/                  # 校徽、校名、校训及派生 PNG 资源
 │   ├── fonts/                   # 模板内置中文字体
 │   ├── images/                  # 用户图片目录
-│   ├── jlu_defense.tex          # 校级模板入口
-│   ├── jlu_defense.pdf          # 校级模板预览
-│   ├── jlu_cover_test.tex       # 传统封面对比测试文件
+│   ├── jlu_defense.tex          # 模板入口
+│   ├── jlu_defense.pdf          # 预览 PDF
 │   ├── references.bib           # 参考文献数据库
 │   └── .latexmkrc               # 编译配置
-├── math/                        # 数学学院模板
+├── math/                        # 吉林大学数学学院模板
 │   ├── assets/                  # 数学学院院徽及派生 PNG 资源
 │   ├── fonts/                   # 模板内置中文字体
 │   ├── images/                  # 用户图片目录
-│   ├── math_defense.tex         # 数学学院模板入口
-│   ├── math_defense.pdf         # 数学学院模板预览
+│   ├── math_defense.tex         # 模板入口
+│   ├── math_defense.pdf         # 预览 PDF
 │   ├── references.bib           # 参考文献数据库
 │   └── .latexmkrc               # 编译配置
-├── jlu_test/                    # 校级传统封面对比测试模板
+├── jlu_v2/                      # 吉林大学模板 2
 │   ├── assets/                  # 校级模板资源
 │   ├── fonts/                   # 模板内置中文字体
 │   ├── images/                  # 用户图片目录
-│   ├── jlu_test_defense.tex     # 测试模板入口
-│   ├── jlu_test_defense.pdf     # 测试模板预览
+│   ├── jlu_v2_defense.tex       # 模板入口
+│   ├── jlu_v2_defense.pdf       # 预览 PDF
 │   ├── references.bib           # 参考文献数据库
 │   └── .latexmkrc               # 编译配置
 ├── .gitignore
@@ -46,24 +45,17 @@ jlu-thesis-defense-beamer-template/
 └── README.md
 ```
 
-每个模板目录都是完整项目，字体、素材、参考文献和编译配置互不依赖。建议从对应模板目录内编译，不要在仓库根目录直接编译子目录里的 `.tex`。
+建议从对应模板目录内编译，不要在仓库根目录直接编译子目录里的 `.tex`。
 
 ## 快速开始
 
 本地编译需要安装 TeX Live 或 MacTeX，并使用 XeLaTeX。
 
-编译校级模板：
+编译吉林大学校级模板：
 
 ```bash
 cd jlu
 latexmk jlu_defense.tex
-```
-
-编译校级传统封面对比页：
-
-```bash
-cd jlu
-latexmk jlu_cover_test.tex
 ```
 
 编译数学学院模板：
@@ -73,11 +65,11 @@ cd math
 latexmk math_defense.tex
 ```
 
-编译校级传统封面对比测试模板：
+编译吉林大学模板 2：
 
 ```bash
-cd jlu_test
-latexmk jlu_test_defense.tex
+cd jlu_v2
+latexmk jlu_v2_defense.tex
 ```
 
 手动编译链为：
@@ -89,16 +81,17 @@ xelatex <main>.tex
 xelatex <main>.tex
 ```
 
-其中 `<main>` 分别为 `jlu_defense`、`math_defense` 或 `jlu_test_defense`。
+其中 `<main>` 分别为 `jlu_defense`、`math_defense` 或 `jlu_v2_defense`。
 
 ## Overleaf 使用
 
 如果只需要一个模板，建议只打包对应目录：
 
-- 校级模板：打包 `jlu/` 目录。
-- 数学学院模板：打包 `math/` 目录。
+- 校级模板：打包 `jlu/`。
+- 数学学院模板：打包 `math/`。
+- 校级模板 2：打包 `jlu_v2/`。
 
-上传到 Overleaf 后，将编译器设置为 XeLaTeX，再编译主文件。
+上传到 Overleaf 后，将编译器设置为 XeLaTeX，再编译对应主文件。
 
 ## 常用修改位置
 
@@ -108,6 +101,7 @@ xelatex <main>.tex
 - `\ThesisSubtitle`：答辩类型，默认“毕业论文答辩”。
 - `\AuthorName`、`\SupervisorName`：答辩人信息。
 - `\DepartmentName`、`\DepartmentShortName`：学校或学院显示文本。
+- `\CollegeName`：校级模板和模板 2 封面中的学院名称。
 - `\MajorName`、`\DefenseDate`：专业和答辩日期。
 
 新增正文页时，复制：
@@ -120,14 +114,25 @@ xelatex <main>.tex
 
 新增章节时，添加 `\section{章节名}`。如果希望目录页和页眉导航完全同步，也要同步维护文件中定义的章节标题命令和目录条目。
 
-## 资源说明
+## 资源命名
 
-`assets/` 中保留了原始高清图片，也包含模板直接引用的透明 PNG：
+`assets/` 中保留原始高清图片和模板直接引用的透明 PNG：
 
-- 数学学院模板保留 `jlu_math_logo_source.png`，实际使用 `jlu_math_logo_navy.png` 和 `jlu_math_logo_white.png`。
-- 校级模板保留 `jd-xhh-2.jpg`、`jd-xm.jpg`、`jd-xx.jpg`，实际使用 `jlu_logo_navy.png`、`jlu_logo_white.png`、`jlu_name_blue.png`、`jlu_name_white.png` 和 `jlu_motto_navy.png`。
+- 校级模板和模板 2 使用 `jlu_logo_source.jpg`、`jlu_name_source.jpg`、`jlu_motto_source.jpg` 作为原始素材。
+- 校级模板和模板 2 实际引用 `jlu_logo_navy.png`、`jlu_logo_white.png`、`jlu_name_blue.png`、`jlu_name_white.png` 和 `jlu_motto_navy.png`。
+- 数学学院模板保留 `jlu_math_logo_source.png`，实际引用 `jlu_math_logo_navy.png` 和 `jlu_math_logo_white.png`。
 
 `images/` 留给使用者放自己的图表、实验结果和插图。
+
+## 发布包
+
+发布时每个模板单独打包为 zip：
+
+- `jlu-template.zip`
+- `math-template.zip`
+- `jlu-v2-template.zip`
+
+每个 zip 都只包含对应模板目录，不包含仓库中的临时文件或其他模板。
 
 ## 常见问题
 

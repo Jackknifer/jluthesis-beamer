@@ -28,7 +28,7 @@ tmp/
 *.pdf
 !math/math_defense.pdf
 !jlu/jlu_defense.pdf
-!jlu_test/jlu_test_defense.pdf
+!jlu_v2/jlu_v2_defense.pdf
 
 # Editor and OS noise
 .DS_Store

@@ -1,6 +1,7 @@
 \documentclass[12pt,aspectratio=43]{beamer}
 
-% 吉林大学毕业论文答辩 Beamer 校级模板。
+% 吉林大学毕业论文答辩 Beamer 校级模板 2。
+% 本版本使用传统居中封面/尾页，便于和 jlu/ 中的正式封面方案对比。
 % 使用建议：
 % 1. 普通使用者优先修改下面的“论文信息”“章节标题”和 document 环境内的 frame。
 % 2. 如需微调封面、尾页、页眉页脚，再改对应的“layout knobs”参数。
@@ -737,13 +738,13 @@
       anchor=west,
       inner sep=0pt,
       outer sep=0pt
-    ] (jlu-test-logo) at (.28cm,-.78cm)
+    ] (jlu-vtwo-logo) at (.28cm,-.78cm)
       {\includegraphics[height=1.08cm]{assets/jlu_logo_navy.png}};
     \node[
       anchor=west,
       inner sep=0pt,
       outer sep=0pt
-    ] at ([xshift=.16cm]jlu-test-logo.east)
+    ] at ([xshift=.16cm]jlu-vtwo-logo.east)
       {\includegraphics[height=.66cm]{assets/jlu_name_blue.png}};
 
     \path[fill=JLUBlue]
@@ -758,7 +759,7 @@
       \begin{minipage}{.86\paperwidth}
         \centering
         {\JLUKai\fontsize{17.2}{19.5}\selectfont\color{white}\ThesisTitle\par}
-        \vspace{.14cm}
+        \vspace{.26cm}
         {\JLUKai\fontsize{9.8}{11.0}\selectfont\color{white!88}\ThesisSubtitle\par}
       \end{minipage}%
     };
