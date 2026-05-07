@@ -10,7 +10,6 @@
 
 三套模板的示例内容、答辩信息字段和基础编译方式保持一致。使用者通常只需要选择一个模板目录，修改主 `.tex` 文件开头的论文信息，再替换正文页面中的占位内容。
 
-仓库地址：[Jackknifer/jluthesis-beamer](https://github.com/Jackknifer/jluthesis-beamer)
 
 ## 模板清单
 
