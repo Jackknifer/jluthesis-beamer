@@ -134,15 +134,17 @@ xelatex <main>.tex
 
 `images/` 留给使用者放自己的图表、实验结果和插图。
 
-## 发布包
+## Releases
 
-发布时每个模板单独打包为 zip：
+每个模板都有独立的 release tag。下载对应 zip 后即可得到单个模板目录：
 
-- `jlu-template.zip`
-- `math-template.zip`
-- `jlu-v2-template.zip`
+| 模板 | Release tag | ZIP 下载 |
+| --- | --- | --- |
+| 吉林大学校级模板 | `jlu-template-v2026.05.07` | [jlu-template.zip](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/jlu-template-v2026.05.07.zip) |
+| 吉林大学数学学院模板 | `math-template-v2026.05.07` | [math-template.zip](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/math-template-v2026.05.07.zip) |
+| 吉林大学模板 2 | `jlu-v2-template-v2026.05.07` | [jlu-v2-template.zip](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/jlu-v2-template-v2026.05.07.zip) |
 
-每个 zip 都只包含对应模板目录，不包含仓库中的临时文件或其他模板。
+这些 release tags 指向各自模板目录的独立快照，不包含其他模板或仓库临时文件。
 
 ## 常见问题
 
