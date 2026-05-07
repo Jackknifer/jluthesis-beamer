@@ -1,88 +1,120 @@
-# 吉林大学 Beamer 答辩模板库
+# 吉林大学 Beamer 答辩模板
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![LaTeX](https://img.shields.io/badge/Language-LaTeX-blue.svg)](https://www.latex-project.org/)
 [![XeLaTeX](https://img.shields.io/badge/Compiler-XeLaTeX-informational.svg)](https://tug.org/xetex/)
 
-本仓库维护三个可独立打包、独立编译的吉林大学毕业论文答辩 Beamer 模板：
+## 项目简介
 
-- `jlu/`：吉林大学校级模板。
-- `math/`：吉林大学数学学院模板。
-- `jlu_v2/`：吉林大学模板 2，使用传统居中封面和统一尾页。
+本项目提供三套可独立下载、独立编译的吉林大学毕业论文答辩 Beamer 模板。模板已经内置中文字体、学校或学院标识、参考文献示例和编译配置，适合直接作为答辩幻灯片的起点。
 
-每个模板目录都包含完整的字体、素材、图片目录、参考文献文件、编译配置、主 `.tex` 文件和预览 PDF。使用者通常只需要替换论文信息、章节标题、正文内容、图片和参考文献。
+三套模板的示例内容、答辩信息字段和基础编译方式保持一致。使用者通常只需要选择一个模板目录，修改主 `.tex` 文件开头的论文信息，再替换正文页面中的占位内容。
+
+## 模板清单
+
+| 模板名称 | 目录 | 说明 |
+| --- | --- | --- |
+| 吉林大学模板1 | `jlu/` | 校名、校徽和校训组合的蓝白风格模板。 |
+| 吉林大学模板2 | `jlu_v2/` | 传统居中封面与统一尾页的吉林大学模板。 |
+| 吉林大学数学学院模板 | `math/` | 使用数学学院标识的学院答辩模板。 |
 
 ## 模板预览
 
 | 模板 | 封面 | 内页 |
 | --- | --- | --- |
-| 吉林大学校级模板 | ![吉林大学校级模板封面](docs/previews/jlu-cover.png) | ![吉林大学校级模板内页](docs/previews/jlu-slide.png) |
+| 吉林大学模板1 | ![吉林大学模板1封面](docs/previews/jlu-cover.png) | ![吉林大学模板1内页](docs/previews/jlu-slide.png) |
+| 吉林大学模板2 | ![吉林大学模板2封面](docs/previews/jlu-v2-cover.png) | ![吉林大学模板2内页](docs/previews/jlu-v2-slide.png) |
 | 吉林大学数学学院模板 | ![吉林大学数学学院模板封面](docs/previews/math-cover.png) | ![吉林大学数学学院模板内页](docs/previews/math-slide.png) |
-| 吉林大学模板 2 | ![吉林大学模板 2 封面](docs/previews/jlu-v2-cover.png) | ![吉林大学模板 2 内页](docs/previews/jlu-v2-slide.png) |
+
+## 格式与实现
+
+三个模板均以单个 Beamer 主文件为入口，主要实现内容如下：
+
+- 使用 `ctex`、`fontspec` 和 XeLaTeX 支持中文排版。
+- 每个模板目录内置 `SimKai.TTF`、`SimHei.TTF`、`SimSun.TTC`，降低本地和 Overleaf 的字体差异。
+- 使用 `tikz` 绘制封面、章节页、页眉、页脚和结束页。
+- 使用 `booktabs` 提供三线表示例，使用 `listings` 提供代码展示示例。
+- 使用 `natbib` 和 `gbt7714-numerical` 生成顺序编码制参考文献。
+- 每个模板都保留 `images/` 目录，供使用者放置论文图表、实验结果和插图。
 
 ## 项目结构
 
+请保持目录结构不变。每个模板都依赖本目录中的字体、素材和参考文献文件。
+
 ```text
-jlu-thesis-defense-beamer-template/
+jluthesis-beamer/
 ├── docs/
-│   └── previews/                # README 使用的封面和内页预览图
-├── jlu/                         # 吉林大学校级模板
+│   └── previews/                # README 使用的高清预览图
+├── jlu/                         # 吉林大学模板1
 │   ├── assets/                  # 校徽、校名、校训及派生 PNG 资源
 │   ├── fonts/                   # 模板内置中文字体
 │   ├── images/                  # 用户图片目录
 │   ├── jlu_defense.tex          # 模板入口
-│   ├── jlu_defense.pdf          # 预览 PDF
+│   ├── jlu_defense.pdf          # 编译预览 PDF
 │   ├── references.bib           # 参考文献数据库
-│   └── .latexmkrc               # 编译配置
-├── math/                        # 吉林大学数学学院模板
-│   ├── assets/                  # 数学学院院徽及派生 PNG 资源
-│   ├── fonts/                   # 模板内置中文字体
-│   ├── images/                  # 用户图片目录
-│   ├── math_defense.tex         # 模板入口
-│   ├── math_defense.pdf         # 预览 PDF
-│   ├── references.bib           # 参考文献数据库
-│   └── .latexmkrc               # 编译配置
-├── jlu_v2/                      # 吉林大学模板 2
-│   ├── assets/                  # 校级模板资源
+│   └── .latexmkrc               # latexmk 编译配置
+├── jlu_v2/                      # 吉林大学模板2
+│   ├── assets/                  # 校级视觉资源
 │   ├── fonts/                   # 模板内置中文字体
 │   ├── images/                  # 用户图片目录
 │   ├── jlu_v2_defense.tex       # 模板入口
-│   ├── jlu_v2_defense.pdf       # 预览 PDF
+│   ├── jlu_v2_defense.pdf       # 编译预览 PDF
 │   ├── references.bib           # 参考文献数据库
-│   └── .latexmkrc               # 编译配置
+│   └── .latexmkrc               # latexmk 编译配置
+├── math/                        # 吉林大学数学学院模板
+│   ├── assets/                  # 数学学院标识及派生 PNG 资源
+│   ├── fonts/                   # 模板内置中文字体
+│   ├── images/                  # 用户图片目录
+│   ├── math_defense.tex         # 模板入口
+│   ├── math_defense.pdf         # 编译预览 PDF
+│   ├── references.bib           # 参考文献数据库
+│   └── .latexmkrc               # latexmk 编译配置
 ├── .gitignore
 ├── LICENSE
 └── README.md
 ```
 
-建议从对应模板目录内编译，不要在仓库根目录直接编译子目录里的 `.tex`。
+## 环境准备
 
-## 快速开始
+推荐使用 TeX Live 或 MacTeX，并确认可以运行 `xelatex` 和 `bibtex`。
 
-本地编译需要安装 TeX Live 或 MacTeX，并使用 XeLaTeX。
+如果使用 Overleaf，请上传所选模板目录的完整压缩包，并在项目设置中将编译器改为 XeLaTeX。
 
-编译吉林大学校级模板：
+## 编译方式
+
+请进入对应模板目录后编译，不要在仓库根目录直接编译子目录文件。
+
+编译吉林大学模板1：
 
 ```bash
 cd jlu
-latexmk jlu_defense.tex
+xelatex jlu_defense.tex
+bibtex jlu_defense
+xelatex jlu_defense.tex
+xelatex jlu_defense.tex
 ```
 
-编译数学学院模板：
-
-```bash
-cd math
-latexmk math_defense.tex
-```
-
-编译吉林大学模板 2：
+编译吉林大学模板2：
 
 ```bash
 cd jlu_v2
-latexmk jlu_v2_defense.tex
+xelatex jlu_v2_defense.tex
+bibtex jlu_v2_defense
+xelatex jlu_v2_defense.tex
+xelatex jlu_v2_defense.tex
 ```
 
-手动编译链为：
+编译吉林大学数学学院模板：
+
+```bash
+cd math
+xelatex math_defense.tex
+bibtex math_defense
+xelatex math_defense.tex
+xelatex math_defense.tex
+```
+
+三套模板都使用同一编译链：
 
 ```bash
 xelatex <main>.tex
@@ -91,82 +123,55 @@ xelatex <main>.tex
 xelatex <main>.tex
 ```
 
-其中 `<main>` 分别为 `jlu_defense`、`math_defense` 或 `jlu_v2_defense`。
+其中 `<main>` 分别为 `jlu_defense`、`jlu_v2_defense` 或 `math_defense`。模板目录内保留 `.latexmkrc`，熟悉 `latexmk` 的用户也可以继续使用它自动执行同等编译流程。
 
 ## Overleaf 使用
 
-如果只需要一个模板，建议只打包对应目录：
+只需要使用一个模板时，建议只打包对应目录：
 
-- 校级模板：打包 `jlu/`。
-- 数学学院模板：打包 `math/`。
-- 校级模板 2：打包 `jlu_v2/`。
+- 吉林大学模板1：打包 `jlu/`。
+- 吉林大学模板2：打包 `jlu_v2/`。
+- 吉林大学数学学院模板：打包 `math/`。
 
-上传到 Overleaf 后，将编译器设置为 XeLaTeX，再编译对应主文件。
+上传后请确认主文件、编译器和参考文献文件都在同一模板目录内。中文乱码通常是编译器没有设置为 XeLaTeX。
 
-## 常用修改位置
+## 字体与资源
 
-在主 `.tex` 文件开头的论文信息区修改：
+模板默认从本目录的 `fonts/` 文件夹读取中文字体。建议保留这些字体文件，避免不同系统字体名称不一致导致编译失败。
 
-- `\ThesisTitle`：论文题目。
-- `\ThesisSubtitle`：答辩类型，默认“毕业论文答辩”。
-- `\AuthorName`、`\SupervisorName`：答辩人信息。
-- `\DepartmentName`、`\DepartmentShortName`：学校或学院显示文本。
-- `\CollegeName`：校级模板和模板 2 封面中的学院名称。
-- `\MajorName`、`\DefenseDate`：专业和答辩日期。
+吉林大学模板1和吉林大学模板2使用 `assets/` 中的校徽、校名和校训资源；吉林大学数学学院模板使用 `assets/` 中的数学学院标识资源。`images/` 目录留给使用者存放自己的图片，不建议删除。
 
-新增正文页时，复制：
+## Release 下载
 
-```latex
-\begin{frame}{页面标题}
-  页面内容
-\end{frame}
-```
-
-新增章节时，添加 `\section{章节名}`。如果希望目录页和页眉导航完全同步，也要同步维护文件中定义的章节标题命令和目录条目。
-
-## 资源命名
-
-`assets/` 中保留原始高清图片和模板直接引用的透明 PNG：
-
-- 校级模板和模板 2 使用 `jlu_logo_source.jpg`、`jlu_name_source.jpg`、`jlu_motto_source.jpg` 作为原始素材。
-- 校级模板和模板 2 实际引用 `jlu_logo_navy.png`、`jlu_logo_white.png`、`jlu_name_blue.png`、`jlu_name_white.png` 和 `jlu_motto_navy.png`。
-- 数学学院模板保留 `jlu_math_logo_source.png`，实际引用 `jlu_math_logo_navy.png` 和 `jlu_math_logo_white.png`。
-
-`images/` 留给使用者放自己的图表、实验结果和插图。
-
-## Releases
-
-每个模板都有独立的 release tag。下载对应 zip 后即可得到单个模板目录：
+每个模板都有独立 release。下载对应压缩包后，可以得到单个可编译模板。
 
 | 模板 | Release tag | ZIP 下载 |
 | --- | --- | --- |
-| 吉林大学校级模板 | `jlu-template-v2026.05.07` | [jlu-template.zip](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/jlu-template-v2026.05.07.zip) |
-| 吉林大学数学学院模板 | `math-template-v2026.05.07` | [math-template.zip](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/math-template-v2026.05.07.zip) |
-| 吉林大学模板 2 | `jlu-v2-template-v2026.05.07` | [jlu-v2-template.zip](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/jlu-v2-template-v2026.05.07.zip) |
-
-这些 release tags 指向各自模板目录的独立快照，不包含其他模板或仓库临时文件。
+| 吉林大学模板1 | `jlu-template-v2026.05.07-2` | [jlu-template-v2026.05.07-2.zip](https://github.com/Jackknifer/jluthesis-beamer/releases/download/jlu-template-v2026.05.07-2/jlu-template-v2026.05.07-2.zip) |
+| 吉林大学模板2 | `jlu-v2-template-v2026.05.07-2` | [jlu-v2-template-v2026.05.07-2.zip](https://github.com/Jackknifer/jluthesis-beamer/releases/download/jlu-v2-template-v2026.05.07-2/jlu-v2-template-v2026.05.07-2.zip) |
+| 吉林大学数学学院模板 | `math-template-v2026.05.07-2` | [math-template-v2026.05.07-2.zip](https://github.com/Jackknifer/jluthesis-beamer/releases/download/math-template-v2026.05.07-2/math-template-v2026.05.07-2.zip) |
 
 ## 常见问题
 
-**中文乱码或方框**
+**中文乱码或显示方框**
 
 请确认使用 XeLaTeX 编译，并保留对应模板目录下的 `fonts/` 文件夹。
 
 **参考文献显示为 `[?]`**
 
-需要完整编译链 `xelatex -> bibtex -> xelatex -> xelatex`。使用 `latexmk` 会自动处理。
+请使用完整编译链：`xelatex -> bibtex -> xelatex -> xelatex`。
 
-**找不到 `references.bib`**
+**提示找不到图片、字体或 `references.bib`**
 
-请从模板目录内编译。例如编译校级模板时先 `cd jlu`，编译数学学院模板时先 `cd math`。
+请先进入模板目录再编译。例如编译吉林大学模板1时先执行 `cd jlu`。
 
-**图片路径报错**
+**Overleaf 编译失败**
 
-用户图片建议放入当前模板目录的 `images/` 文件夹，并用 `images/your-image.png` 这样的相对路径引用。
+请确认上传的是完整模板目录，并在 Overleaf 设置中选择 XeLaTeX。不要只上传单个 `.tex` 文件。
 
 ## 声明
 
-本项目为非官方模板，未经过吉林大学或相关学院官方发布、授权或认证。模板仅供学习和答辩排版参考，正式使用前请根据导师、学院和学校要求自行确认。
+本项目为非官方模板，未经过吉林大学或相关学院官方发布、授权或认证。正式使用前，请根据学校、学院、导师和答辩秘书的具体要求自行确认。
 
 ## 许可证
 
