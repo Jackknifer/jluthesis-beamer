@@ -10,6 +10,8 @@
 
 三套模板的示例内容、答辩信息字段和基础编译方式保持一致。使用者通常只需要选择一个模板目录，修改主 `.tex` 文件开头的论文信息，再替换正文页面中的占位内容。
 
+仓库地址：[Jackknifer/jluthesis-beamer](https://github.com/Jackknifer/jluthesis-beamer)
+
 ## 模板清单
 
 | 模板名称 | 目录 | 说明 |
@@ -80,6 +82,16 @@ jluthesis-beamer/
 
 如果使用 Overleaf，请上传所选模板目录的完整压缩包，并在项目设置中将编译器改为 XeLaTeX。
 
+
+## 发布版本
+
+每套模板维护独立的 release tag，便于按模板跟踪版本。GitHub 自动生成的 ZIP 是仓库快照，下载后进入对应模板目录即可使用。
+
+| 模板名称 | 最新 tag | ZIP 下载 |
+| --- | --- | --- |
+| 吉林大学模板1 | [`jlu-template-v2026.05.07-3`](https://github.com/Jackknifer/jluthesis-beamer/tree/jlu-template-v2026.05.07-3) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/jlu-template-v2026.05.07-3.zip) |
+| 吉林大学模板2 | [`jlu-v2-template-v2026.05.07-3`](https://github.com/Jackknifer/jluthesis-beamer/tree/jlu-v2-template-v2026.05.07-3) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/jlu-v2-template-v2026.05.07-3.zip) |
+| 吉林大学数学学院模板 | [`math-template-v2026.05.07-3`](https://github.com/Jackknifer/jluthesis-beamer/tree/math-template-v2026.05.07-3) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/math-template-v2026.05.07-3.zip) |
 
 
 ## 字体与资源
