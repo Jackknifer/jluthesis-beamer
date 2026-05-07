@@ -79,7 +79,9 @@ jluthesis-beamer/
 
 推荐使用 TeX Live 或 MacTeX，并确认可以运行 `xelatex` 和 `bibtex`。
 
-如果使用 Overleaf，请上传所选模板目录的完整压缩包，并在项目设置中将编译器改为 XeLaTeX。
+在线编辑平台建议优先使用 TeXPage。模板包含中文字体、Beamer、TikZ 图形和参考文献示例，在线平台需要多轮编译；Overleaf 在部分项目中可能出现编译超时，TeXPage 对中文 LaTeX 和国内网络环境通常更友好。
+
+如果使用 Overleaf，请上传所选模板目录的完整压缩包，并在项目设置中将编译器改为 XeLaTeX。若遇到编译超时，建议改用 TeXPage 或本地 TeX Live / MacTeX 编译。
 
 ## 发布版本
 
@@ -115,7 +117,7 @@ jluthesis-beamer/
 
 **Overleaf 编译失败**
 
-请确认上传的是完整模板目录，并在 Overleaf 设置中选择 XeLaTeX。不要只上传单个 `.tex` 文件。
+请确认上传的是完整模板目录，并在 Overleaf 设置中选择 XeLaTeX。不要只上传单个 `.tex` 文件。若错误表现为编译超时，建议改用 TeXPage 或本地 TeX Live / MacTeX。
 
 ## 声明
 
