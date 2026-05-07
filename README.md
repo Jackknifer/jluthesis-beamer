@@ -12,10 +12,20 @@
 
 每个模板目录都包含完整的字体、素材、图片目录、参考文献文件、编译配置、主 `.tex` 文件和预览 PDF。使用者通常只需要替换论文信息、章节标题、正文内容、图片和参考文献。
 
+## 模板预览
+
+| 模板 | 封面 | 内页 |
+| --- | --- | --- |
+| 吉林大学校级模板 | ![吉林大学校级模板封面](docs/previews/jlu-cover.png) | ![吉林大学校级模板内页](docs/previews/jlu-slide.png) |
+| 吉林大学数学学院模板 | ![吉林大学数学学院模板封面](docs/previews/math-cover.png) | ![吉林大学数学学院模板内页](docs/previews/math-slide.png) |
+| 吉林大学模板 2 | ![吉林大学模板 2 封面](docs/previews/jlu-v2-cover.png) | ![吉林大学模板 2 内页](docs/previews/jlu-v2-slide.png) |
+
 ## 项目结构
 
 ```text
 jlu-thesis-defense-beamer-template/
+├── docs/
+│   └── previews/                # README 使用的封面和内页预览图
 ├── jlu/                         # 吉林大学校级模板
 │   ├── assets/                  # 校徽、校名、校训及派生 PNG 资源
 │   ├── fonts/                   # 模板内置中文字体
