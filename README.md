@@ -4,12 +4,13 @@
 [![LaTeX](https://img.shields.io/badge/Language-LaTeX-blue.svg)](https://www.latex-project.org/)
 [![XeLaTeX](https://img.shields.io/badge/Compiler-XeLaTeX-informational.svg)](https://tug.org/xetex/)
 
-本仓库用于维护两个相互独立、可单独打包使用的吉林大学毕业论文答辩 Beamer 模板：
+本仓库用于维护两个相互独立、可单独打包使用的吉林大学毕业论文答辩 Beamer 正式模板，并附带一个校级传统封面对比测试模板：
 
 - `jlu/`：吉林大学校级通用模板。
 - `math/`：吉林大学数学学院模板。
+- `jlu_test/`：校级模板复制版，使用传统封面/尾页，用于与正式封面方案对比。
 
-两个模板都内置封面页、目录页、章节过渡页、正文页、参考文献页和结束页。使用者通常只需要替换论文信息、章节标题、正文内容、图片和参考文献。
+各模板目录都内置封面页、目录页、章节过渡页、正文页、参考文献页和结束页。使用者通常只需要替换论文信息、章节标题、正文内容、图片和参考文献。
 
 ## 项目结构
 
@@ -30,6 +31,14 @@ jlu-thesis-defense-beamer-template/
 │   ├── images/                  # 用户图片目录
 │   ├── math_defense.tex         # 数学学院模板入口
 │   ├── math_defense.pdf         # 数学学院模板预览
+│   ├── references.bib           # 参考文献数据库
+│   └── .latexmkrc               # 编译配置
+├── jlu_test/                    # 校级传统封面对比测试模板
+│   ├── assets/                  # 校级模板资源
+│   ├── fonts/                   # 模板内置中文字体
+│   ├── images/                  # 用户图片目录
+│   ├── jlu_test_defense.tex     # 测试模板入口
+│   ├── jlu_test_defense.pdf     # 测试模板预览
 │   ├── references.bib           # 参考文献数据库
 │   └── .latexmkrc               # 编译配置
 ├── .gitignore
@@ -64,6 +73,13 @@ cd math
 latexmk math_defense.tex
 ```
 
+编译校级传统封面对比测试模板：
+
+```bash
+cd jlu_test
+latexmk jlu_test_defense.tex
+```
+
 手动编译链为：
 
 ```bash
@@ -73,7 +89,7 @@ xelatex <main>.tex
 xelatex <main>.tex
 ```
 
-其中 `<main>` 分别为 `jlu_defense` 或 `math_defense`。
+其中 `<main>` 分别为 `jlu_defense`、`math_defense` 或 `jlu_test_defense`。
 
 ## Overleaf 使用
 
@@ -90,7 +106,7 @@ xelatex <main>.tex
 
 - `\ThesisTitle`：论文题目。
 - `\ThesisSubtitle`：答辩类型，默认“毕业论文答辩”。
-- `\AuthorName`、`\StudentID`、`\SupervisorName`：答辩人信息。
+- `\AuthorName`、`\SupervisorName`：答辩人信息。
 - `\DepartmentName`、`\DepartmentShortName`：学校或学院显示文本。
 - `\MajorName`、`\DefenseDate`：专业和答辩日期。
 

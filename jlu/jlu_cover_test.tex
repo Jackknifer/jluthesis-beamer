@@ -61,7 +61,7 @@
 \setlength{\JLUFootlineTextCenterY}{.5\JLUFootlineTotalHeight}
 
 \newcommand{\JLUDrawFootline}{%
-  \begin{scope}[shift={(current page.south west)}]
+  \begin{scope}[shift={(0,-\paperheight)}]
     \fill[JLUTopNavy] (0,0) rectangle (\JLUFootlineLeftHalfWidth,\JLUFootlineTotalHeight);
     \fill[JLUBlue] (\JLUFootlineLeftHalfWidth,0) rectangle (\paperwidth,\JLUFootlineTotalHeight);
     \draw[white!16,line width=.18pt]
@@ -97,15 +97,17 @@
 
 \begin{document}
 
-\begin{frame}[plain]
-  \begin{tikzpicture}[remember picture,overlay]
-    \fill[JLULightBlue] (current page.south west) rectangle (current page.north east);
+\begingroup
+  \usebackgroundtemplate{%
+  \begin{tikzpicture}
+    \useasboundingbox (0,0) rectangle (\paperwidth,-\paperheight);
+    \fill[JLULightBlue] (0,0) rectangle (\paperwidth,-\paperheight);
 
     \node[
       anchor=west,
       inner sep=0pt,
       outer sep=0pt
-    ] (jlu-test-logo) at ([xshift=.28cm,yshift=-.78cm]current page.north west)
+    ] (jlu-test-logo) at (.28cm,-.78cm)
       {\includegraphics[height=1.08cm]{assets/jlu_logo_navy.png}};
     \node[
       anchor=west,
@@ -115,14 +117,14 @@
       {\includegraphics[height=.66cm]{assets/jlu_name_blue.png}};
 
     \path[fill=JLUBlue]
-      ([yshift=-2.34cm]current page.north west)
-      rectangle ([yshift=-4.98cm]current page.north east);
+      (0,-2.34cm)
+      rectangle (\paperwidth,-4.98cm);
     \node[
       anchor=center,
       align=center,
       inner sep=0pt,
       outer sep=0pt
-    ] at ([yshift=-3.66cm]current page.north) {%
+    ] at (.5\paperwidth,-3.66cm) {%
       \begin{minipage}{.86\paperwidth}
         \centering
         {\JLUKai\fontsize{17.2}{19.5}\selectfont\color{white}\ThesisTitle\par}
@@ -136,7 +138,7 @@
       align=center,
       inner sep=0pt,
       outer sep=0pt
-    ] at ([yshift=-5.74cm]current page.north) {%
+    ] at (.5\paperwidth,-5.74cm) {%
       \begin{minipage}{.56\paperwidth}
         \centering
         {\JLUKai\fontsize{10.2}{13.2}\selectfont
@@ -149,7 +151,10 @@
       \end{minipage}%
     };
     \JLUDrawFootline
-  \end{tikzpicture}
-\end{frame}
+  \end{tikzpicture}%
+  }%
+  \begin{frame}[plain]
+  \end{frame}%
+\endgroup
 
 \end{document}

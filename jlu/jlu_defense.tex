@@ -34,18 +34,16 @@
 % \ThesisTitle    : 封面主标题；始终占用两行空间。一行/两行/长标题都适用。
 % \ThesisSubtitle : 封面右侧副标题、目录页左上角、页脚第三栏共用文本。
 % \AuthorName     : 答辩人姓名。
-% \StudentID      : 学号。
 % \SupervisorName : 指导教师。
 % \DepartmentName : 学校中文名；用于 PDF 元信息。
 % \DepartmentShortName : 正文页眉右侧使用，过长时可写成学校简称。
-% \DepartmentEnglishName : 学校英文名；用于 PDF 元信息。
+% \DepartmentEnglishName : 学校英文名；用于 PDF 元信息和封面/尾页右下角。
 % \CollegeName    : 学院中文名；封面/尾页答辩信息块使用。
 % \MajorName      : 专业名称；封面/尾页答辩信息块使用。
 % \DefenseDate    : 答辩日期；封面/尾页左下角和页脚中栏使用。
 \newcommand{\ThesisTitle}{基于时间序列分析的大学生摸鱼行为研究}
 \newcommand{\ThesisSubtitle}{毕业论文答辩}
 \newcommand{\AuthorName}{张三}
-\newcommand{\StudentID}{102201XX}
 \newcommand{\SupervisorName}{李四}
 \newcommand{\DepartmentName}{吉林大学}
 \newcommand{\DepartmentShortName}{吉林大学}
@@ -159,11 +157,20 @@
   ] at ([xshift=-.55cm,yshift=.50cm]\paperwidth,-\paperheight)
     {\includegraphics[width=3.55cm]{assets/jlu_motto_navy.png}};
 }
+\newcommand{\JLUDrawCornerEnglishName}{%
+  \node[
+    anchor=south east,
+    text=JLUBlue!32,
+    font=\JLUKai\fontsize{12}{14}\selectfont
+  ] at ([xshift=-.55cm,yshift=.58cm]\paperwidth,-\paperheight) {\DepartmentEnglishName};
+}
 
 % ---------- Cover and ending page layout knobs ----------
 % 这一组参数控制封面和结束页的版式。只想替换内容时不用动这里。
 % \JLUCoverTitleWidth            : 主标题文本宽度；越小越容易换行。
-% \JLUCoverTitleTopY             : 主标题上边缘高度；数值更负会整体下移。
+% \JLUCoverTitleBandTopY         : 蓝色标题块上边缘高度。
+% \JLUCoverTitleBandHeight       : 蓝色标题块总高度。
+% \JLUCoverTitleTopPadding       : 主标题上边距；配合蓝色块高度让两行标题视觉居中。
 % \JLUCoverTitleLineHeight       : 单行文本行高。
 % \JLUCoverTitleTwoLineHeight    : 主标题固定占位的两行高度（不随内容变化）。
 % \JLUCoverTitleSecondLineOffset : 副标题横线对齐第二行视觉中线的位置。
@@ -172,27 +179,32 @@
 % \JLUCoverInfoTextTopGap        : 答辩信息文字与梯形上边缘的距离。
 \newsavebox{\JLUCoverTitleBox}
 \newsavebox{\JLUCoverInfoBox}
-\newcommand{\JLUCoverTitleFont}{\JLUKai\fontsize{19.5}{21.5}\selectfont}
+\newcommand{\JLUCoverTitleFont}{\JLUKai\fontsize{19.5}{25.5}\selectfont}
 \newlength{\JLUCoverTitleWidth}
 \setlength{\JLUCoverTitleWidth}{.78\paperwidth}
 \newlength{\JLUCoverInfoWidth}
 \setlength{\JLUCoverInfoWidth}{.66\paperwidth}
 \newlength{\JLUCoverInfoTopWidth}
 \setlength{\JLUCoverInfoTopWidth}{.72\paperwidth}
+\newlength{\JLUCoverTitleBandTopY}
+\setlength{\JLUCoverTitleBandTopY}{-2.06cm}
+\newlength{\JLUCoverTitleBandHeight}
+\setlength{\JLUCoverTitleBandHeight}{2.90cm}
+\newlength{\JLUCoverTitleTopPadding}
+\setlength{\JLUCoverTitleTopPadding}{.38cm}
 \newlength{\JLUCoverTitleTopY}
-\setlength{\JLUCoverTitleTopY}{-2.42cm}
 \newlength{\JLUCoverTitleLineHeight}
-\setlength{\JLUCoverTitleLineHeight}{21.5pt}
+\setlength{\JLUCoverTitleLineHeight}{25.5pt}
 \newlength{\JLUCoverTitleTwoLineHeight}
 \setlength{\JLUCoverTitleTwoLineHeight}{2\JLUCoverTitleLineHeight}
 \newlength{\JLUCoverTitleSecondLineOffset}
-\setlength{\JLUCoverTitleSecondLineOffset}{1.35\JLUCoverTitleLineHeight}
+\setlength{\JLUCoverTitleSecondLineOffset}{1.25\JLUCoverTitleLineHeight}
 \newlength{\JLUCoverTitleSecondLineY}
 \newlength{\JLUCoverTitleBottomY}
 \newlength{\JLUCoverInfoTopY}
 \newlength{\JLUCoverInfoBottomY}
 \newlength{\JLUCoverInfoInsetDepth}
-\setlength{\JLUCoverInfoInsetDepth}{.96cm}
+\setlength{\JLUCoverInfoInsetDepth}{.60cm}
 \newlength{\JLUCoverInfoTextTopGap}
 \setlength{\JLUCoverInfoTextTopGap}{.12cm}
 \newlength{\JLUCoverInfoBottomGap}
@@ -215,7 +227,11 @@
   \sbox{\JLUCoverTitleBox}{%
     \parbox[t]{\JLUCoverTitleWidth}{%
       \raggedright
-      {\JLUCoverTitleFont\color{white} \ThesisTitle}%
+      {\JLUCoverTitleFont\color{white}%
+       \setlength{\baselineskip}{\JLUCoverTitleLineHeight}%
+       \setlength{\lineskip}{0pt}%
+       \setlength{\parskip}{0pt}%
+       \ThesisTitle\par}%
     }%
   }%
   \sbox{\JLUCoverInfoBox}{%
@@ -224,15 +240,15 @@
       {\JLUKai\fontsize{8.8}{10.2}\selectfont
         \begin{tabular}{@{}r@{\hspace{.16cm}}l@{}}
           {\color{JLUBlue!70!JLUTopNavy}答辩人：} & \AuthorName \\
-          {\color{JLUBlue!70!JLUTopNavy}学号：} & \StudentID \\
           {\color{JLUBlue!70!JLUTopNavy}指导教师：} & \SupervisorName \\
           {\color{JLUBlue!70!JLUTopNavy}学院：} & \CollegeName \\
           {\color{JLUBlue!70!JLUTopNavy}专业：} & \MajorName
         \end{tabular}}%
     }%
   }%
+  \setlength{\JLUCoverTitleTopY}{\dimexpr\JLUCoverTitleBandTopY-\JLUCoverTitleTopPadding\relax}%
   \setlength{\JLUCoverTitleSecondLineY}{\dimexpr\JLUCoverTitleTopY-\JLUCoverTitleSecondLineOffset\relax}%
-  \setlength{\JLUCoverTitleBottomY}{\dimexpr\JLUCoverTitleTopY-\JLUCoverTitleTwoLineHeight-1.38cm\relax}%
+  \setlength{\JLUCoverTitleBottomY}{\dimexpr\JLUCoverTitleBandTopY-\JLUCoverTitleBandHeight\relax}%
   \setlength{\JLUCoverInfoTopY}{\dimexpr\JLUCoverTitleBottomY+\JLUCoverInfoInsetDepth-\JLUCoverInfoTextTopGap\relax}%
   \setlength{\JLUCoverInfoBottomY}{\dimexpr\JLUCoverInfoTopY-\ht\JLUCoverInfoBox-\dp\JLUCoverInfoBox-\JLUCoverInfoBottomGap\relax}%
 }
@@ -449,7 +465,7 @@
           text=black,
           font=\JLUKai\small
         ] at ([xshift=.72cm,yshift=.58cm]0,-\paperheight) {\DefenseDate};
-        \JLUDrawCornerMotto{.34}
+        \JLUDrawCornerEnglishName
       }%
     }%
     \begin{frame}[plain]
@@ -697,7 +713,7 @@
     \JLUPageCanvas{%
       \fill[JLULightBlue] (0,0) rectangle (\paperwidth,-\paperheight);
       \path[shade, shading angle=0, left color=JLUBlue, right color=JLUBlue!55!JLUTopNavy]
-        (0,-2.06cm) rectangle (\paperwidth,\JLUCoverTitleBottomY);
+        (0,\JLUCoverTitleBandTopY) rectangle (\paperwidth,\JLUCoverTitleBottomY);
       \JLUDrawInfoBand{\JLUCoverTitleBottomY}{\JLUCoverInfoBottomY}
       \JLUDrawBrand{jlu-title}
       \node[
@@ -726,7 +742,7 @@
         text=black,
         font=\JLUKai\small
       ] at ([xshift=.72cm,yshift=.58cm]0,-\paperheight) {\DefenseDate};
-      \JLUDrawCornerMotto{.34}
+      \JLUDrawCornerEnglishName
     }%
   }%
   \begin{frame}[plain]
@@ -753,7 +769,7 @@
 
 \begin{frame}{快速替换信息}
   \begin{block}{封面信息}
-    请在文件开头的论文信息区替换题目、答辩人、学号、指导教师、专业和答辩日期。
+    请在文件开头的论文信息区替换题目、答辩人、指导教师、专业和答辩日期。
   \end{block}
 
   \begin{itemize}
