@@ -88,9 +88,9 @@ jluthesis-beamer/
 
 | 模板名称 | 最新 tag | ZIP 下载 |
 | --- | --- | --- |
-| 吉林大学模板1 | [`jlu-template-v2026.05.07-5`](https://github.com/Jackknifer/jluthesis-beamer/tree/jlu-template-v2026.05.07-5) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/jlu-template-v2026.05.07-5.zip) |
-| 吉林大学模板2 | [`jlu-v2-template-v2026.05.07-5`](https://github.com/Jackknifer/jluthesis-beamer/tree/jlu-v2-template-v2026.05.07-5) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/jlu-v2-template-v2026.05.07-5.zip) |
-| 吉林大学数学学院模板 | [`math-template-v2026.05.07-5`](https://github.com/Jackknifer/jluthesis-beamer/tree/math-template-v2026.05.07-5) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/math-template-v2026.05.07-5.zip) |
+| 吉林大学模板1 | [`jlu-template-v2026.05.07-5`](https://github.com/Jackknifer/jluthesis-beamer/releases/tag/jlu-template-v2026.05.07-5) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/releases/download/jlu-template-v2026.05.07-5/jlu-template-v2026.05.07-5.zip) |
+| 吉林大学模板2 | [`jlu-v2-template-v2026.05.07-5`](https://github.com/Jackknifer/jluthesis-beamer/releases/tag/jlu-v2-template-v2026.05.07-5) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/releases/download/jlu-v2-template-v2026.05.07-5/jlu-v2-template-v2026.05.07-5.zip) |
+| 吉林大学数学学院模板 | [`math-template-v2026.05.07-5`](https://github.com/Jackknifer/jluthesis-beamer/releases/tag/math-template-v2026.05.07-5) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/releases/download/math-template-v2026.05.07-5/math-template-v2026.05.07-5.zip) |
 
 
 ## 字体与资源
