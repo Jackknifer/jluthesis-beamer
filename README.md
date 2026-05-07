@@ -6,7 +6,7 @@
 
 ## 项目简介
 
-本项目提供三套可独立下载、独立编译的吉林大学毕业论文答辩 Beamer 模板。模板已经内置中文字体、学校或学院标识、参考文献示例和编译配置，适合直接作为答辩幻灯片的起点。
+本项目提供三套可独立下载、独立编译的吉林大学毕业论文答辩 Beamer 模板。模板已经内置中文字体、学校或学院标识和参考文献示例，适合直接作为答辩幻灯片的起点。
 
 三套模板的示例内容、答辩信息字段和基础编译方式保持一致。使用者通常只需要选择一个模板目录，修改主 `.tex` 文件开头的论文信息，再替换正文页面中的占位内容。
 
@@ -52,24 +52,21 @@ jluthesis-beamer/
 │   ├── images/                  # 用户图片目录
 │   ├── jlu_defense.tex          # 模板入口
 │   ├── jlu_defense.pdf          # 编译预览 PDF
-│   ├── references.bib           # 参考文献数据库
-│   └── .latexmkrc               # latexmk 编译配置
+│   └── references.bib           # 参考文献数据库
 ├── jlu_v2/                      # 吉林大学模板2
 │   ├── assets/                  # 校级视觉资源
 │   ├── fonts/                   # 模板内置中文字体
 │   ├── images/                  # 用户图片目录
 │   ├── jlu_v2_defense.tex       # 模板入口
 │   ├── jlu_v2_defense.pdf       # 编译预览 PDF
-│   ├── references.bib           # 参考文献数据库
-│   └── .latexmkrc               # latexmk 编译配置
+│   └── references.bib           # 参考文献数据库
 ├── math/                        # 吉林大学数学学院模板
 │   ├── assets/                  # 数学学院标识及派生 PNG 资源
 │   ├── fonts/                   # 模板内置中文字体
 │   ├── images/                  # 用户图片目录
 │   ├── math_defense.tex         # 模板入口
 │   ├── math_defense.pdf         # 编译预览 PDF
-│   ├── references.bib           # 参考文献数据库
-│   └── .latexmkrc               # latexmk 编译配置
+│   └── references.bib           # 参考文献数据库
 ├── .gitignore
 ├── LICENSE
 └── README.md
@@ -85,13 +82,13 @@ jluthesis-beamer/
 
 ## 发布版本
 
-每套模板维护独立的 release tag，便于按模板跟踪版本。GitHub 自动生成的 ZIP 是仓库快照，下载后进入对应模板目录即可使用。
+每套模板维护独立的 release tag，便于按模板跟踪版本。发布页提供的是单套模板 ZIP 包，下载后进入对应模板目录即可使用。
 
 | 模板名称 | 最新 tag | ZIP 下载 |
 | --- | --- | --- |
-| 吉林大学模板1 | [`jlu-template-v2026.05.07-5`](https://github.com/Jackknifer/jluthesis-beamer/releases/tag/jlu-template-v2026.05.07-5) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/releases/download/jlu-template-v2026.05.07-5/jlu-template-v2026.05.07-5.zip) |
-| 吉林大学模板2 | [`jlu-v2-template-v2026.05.07-5`](https://github.com/Jackknifer/jluthesis-beamer/releases/tag/jlu-v2-template-v2026.05.07-5) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/releases/download/jlu-v2-template-v2026.05.07-5/jlu-v2-template-v2026.05.07-5.zip) |
-| 吉林大学数学学院模板 | [`math-template-v2026.05.07-5`](https://github.com/Jackknifer/jluthesis-beamer/releases/tag/math-template-v2026.05.07-5) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/releases/download/math-template-v2026.05.07-5/math-template-v2026.05.07-5.zip) |
+| 吉林大学模板1 | [`jlu-template-v2026.05.07-6`](https://github.com/Jackknifer/jluthesis-beamer/releases/tag/jlu-template-v2026.05.07-6) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/releases/download/jlu-template-v2026.05.07-6/jlu-template-v2026.05.07-6.zip) |
+| 吉林大学模板2 | [`jlu-v2-template-v2026.05.07-6`](https://github.com/Jackknifer/jluthesis-beamer/releases/tag/jlu-v2-template-v2026.05.07-6) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/releases/download/jlu-v2-template-v2026.05.07-6/jlu-v2-template-v2026.05.07-6.zip) |
+| 吉林大学数学学院模板 | [`math-template-v2026.05.07-6`](https://github.com/Jackknifer/jluthesis-beamer/releases/tag/math-template-v2026.05.07-6) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/releases/download/math-template-v2026.05.07-6/math-template-v2026.05.07-6.zip) |
 
 
 ## 字体与资源
