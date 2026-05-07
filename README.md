@@ -88,15 +88,6 @@ jluthesis-beamer/
 
 吉林大学模板1和吉林大学模板2使用 `assets/` 中的校徽、校名和校训资源；吉林大学数学学院模板使用 `assets/` 中的数学学院标识资源。`images/` 目录留给使用者存放自己的图片，不建议删除。
 
-## Release 下载
-
-每个模板都有独立 release。下载对应压缩包后，可以得到单个可编译模板。
-
-| 模板 | Release tag | ZIP 下载 |
-| --- | --- | --- |
-| 吉林大学模板1 | `jlu-template-v2026.05.07-2` | [jlu-template-v2026.05.07-2.zip](https://github.com/Jackknifer/jluthesis-beamer/releases/download/jlu-template-v2026.05.07-2/jlu-template-v2026.05.07-2.zip) |
-| 吉林大学模板2 | `jlu-v2-template-v2026.05.07-2` | [jlu-v2-template-v2026.05.07-2.zip](https://github.com/Jackknifer/jluthesis-beamer/releases/download/jlu-v2-template-v2026.05.07-2/jlu-v2-template-v2026.05.07-2.zip) |
-| 吉林大学数学学院模板 | `math-template-v2026.05.07-2` | [math-template-v2026.05.07-2.zip](https://github.com/Jackknifer/jluthesis-beamer/releases/download/math-template-v2026.05.07-2/math-template-v2026.05.07-2.zip) |
 
 ## 常见问题
 
