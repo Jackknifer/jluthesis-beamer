@@ -81,7 +81,6 @@ jluthesis-beamer/
 
 如果使用 Overleaf，请上传所选模板目录的完整压缩包，并在项目设置中将编译器改为 XeLaTeX。
 
-
 ## 发布版本
 
 每套模板维护独立的 release tag，便于按模板跟踪版本。GitHub 自动生成的 ZIP 是仓库快照，下载后进入对应模板目录即可使用。
