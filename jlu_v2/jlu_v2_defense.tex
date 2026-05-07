@@ -343,7 +343,6 @@
   color(0pt)=(JLUTopNavy);
   color(.76\paperwidth)=(JLUBlue);
   color(\paperwidth)=(JLUBlue)}
-\colorlet{JLUHeadlineSlash}{JLUBlue!70!JLUTopNavy}
 
 % ---------- User quick-edit area: section titles ----------
 % 目录页、页眉导航和 \section 标题都读取这一组命令。
@@ -517,15 +516,6 @@
     \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\JLUHeadlineHeight}}%
     \pgfusepath{clip}%
     \pgftext[left,base]{\pgfuseshading{jlu@headlineshade}}%
-    \pgfsetfillcolor{JLUHeadlineSlash}%
-    \pgfsetfillopacity{.72}%
-    \pgfpathmoveto{\pgfpoint{.755\paperwidth}{\JLUHeadlineHeight}}%
-    \pgfpathlineto{\pgfpoint{.79\paperwidth}{\JLUHeadlineHeight}}%
-    \pgfpathlineto{\pgfpoint{.762\paperwidth}{0pt}}%
-    \pgfpathlineto{\pgfpoint{.727\paperwidth}{0pt}}%
-    \pgfpathclose%
-    \pgfusepath{fill}%
-    \pgfsetfillopacity{1}%
   \end{pgfpicture}%
 }
 
@@ -550,12 +540,6 @@
     \useasboundingbox (0,0) rectangle (\paperwidth,\JLUFrameTitleBottom);
     \path[shade,shading angle=0,left color=JLUTopNavy,right color=JLUBlue]
       (0,\JLUFrameTitleHeight) rectangle (\paperwidth,\JLUFrameTitleBottom);
-    \fill[JLUHeadlineSlash,opacity=.72]
-      (.755\paperwidth,\JLUFrameTitleBottom)
-      -- (.79\paperwidth,\JLUFrameTitleBottom)
-      -- (.762\paperwidth,\JLUFrameTitleHeight)
-      -- (.727\paperwidth,\JLUFrameTitleHeight)
-      -- cycle;
     \node[anchor=west,inner sep=0pt] at
       (.18cm,\dimexpr\JLUFrameTitleHeight+.5\JLUHeadlineHeight\relax)
       {\JLUSectionNavigation{\dimexpr.76\paperwidth-.28cm\relax}};
@@ -690,12 +674,6 @@
       \JLUPageCanvas{%
         \fill[JLULightBlue] (0,0) rectangle (\paperwidth,-\paperheight);
         \fill[JLUBlue] (0,-2.45cm) rectangle (\paperwidth,-4.22cm);
-        \path[shade, shading angle=0, left color=JLUBlue!35!JLUTopNavy, right color=JLUTopNavy]
-          (.72\paperwidth,-2.45cm)
-          -- (.82\paperwidth,-2.45cm)
-          -- (.72\paperwidth,-4.22cm)
-          -- (.62\paperwidth,-4.22cm)
-          -- cycle;
         \node[
           anchor=west,
           text=white,

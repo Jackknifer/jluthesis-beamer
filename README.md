@@ -22,11 +22,11 @@
 
 ## 模板预览
 
-| 模板 | 封面 | 内页 |
+| 模板 | 封面 | 章节页 |
 | --- | --- | --- |
-| 吉林大学模板1 | ![吉林大学模板1封面](docs/previews/jlu-cover.png) | ![吉林大学模板1内页](docs/previews/jlu-slide.png) |
-| 吉林大学模板2 | ![吉林大学模板2封面](docs/previews/jlu-v2-cover.png) | ![吉林大学模板2内页](docs/previews/jlu-v2-slide.png) |
-| 吉林大学数学学院模板 | ![吉林大学数学学院模板封面](docs/previews/math-cover.png) | ![吉林大学数学学院模板内页](docs/previews/math-slide.png) |
+| 吉林大学模板1 | ![吉林大学模板1封面](docs/previews/jlu-cover.png) | ![吉林大学模板1章节页](docs/previews/jlu-slide.png) |
+| 吉林大学模板2 | ![吉林大学模板2封面](docs/previews/jlu-v2-cover.png) | ![吉林大学模板2章节页](docs/previews/jlu-v2-slide.png) |
+| 吉林大学数学学院模板 | ![吉林大学数学学院模板封面](docs/previews/math-cover.png) | ![吉林大学数学学院模板章节页](docs/previews/math-slide.png) |
 
 ## 格式与实现
 
@@ -89,9 +89,9 @@ jluthesis-beamer/
 
 | 模板名称 | 最新 tag | ZIP 下载 |
 | --- | --- | --- |
-| 吉林大学模板1 | [`jlu-template-v2026.05.07-3`](https://github.com/Jackknifer/jluthesis-beamer/tree/jlu-template-v2026.05.07-3) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/jlu-template-v2026.05.07-3.zip) |
-| 吉林大学模板2 | [`jlu-v2-template-v2026.05.07-3`](https://github.com/Jackknifer/jluthesis-beamer/tree/jlu-v2-template-v2026.05.07-3) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/jlu-v2-template-v2026.05.07-3.zip) |
-| 吉林大学数学学院模板 | [`math-template-v2026.05.07-3`](https://github.com/Jackknifer/jluthesis-beamer/tree/math-template-v2026.05.07-3) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/math-template-v2026.05.07-3.zip) |
+| 吉林大学模板1 | [`jlu-template-v2026.05.07-4`](https://github.com/Jackknifer/jluthesis-beamer/tree/jlu-template-v2026.05.07-4) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/jlu-template-v2026.05.07-4.zip) |
+| 吉林大学模板2 | [`jlu-v2-template-v2026.05.07-4`](https://github.com/Jackknifer/jluthesis-beamer/tree/jlu-v2-template-v2026.05.07-4) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/jlu-v2-template-v2026.05.07-4.zip) |
+| 吉林大学数学学院模板 | [`math-template-v2026.05.07-4`](https://github.com/Jackknifer/jluthesis-beamer/tree/math-template-v2026.05.07-4) | [下载 ZIP](https://github.com/Jackknifer/jluthesis-beamer/archive/refs/tags/math-template-v2026.05.07-4.zip) |
 
 
 ## 字体与资源
