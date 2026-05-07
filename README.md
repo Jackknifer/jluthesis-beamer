@@ -80,60 +80,7 @@ jluthesis-beamer/
 
 如果使用 Overleaf，请上传所选模板目录的完整压缩包，并在项目设置中将编译器改为 XeLaTeX。
 
-## 编译方式
 
-请进入对应模板目录后编译，不要在仓库根目录直接编译子目录文件。
-
-编译吉林大学模板1：
-
-```bash
-cd jlu
-xelatex jlu_defense.tex
-bibtex jlu_defense
-xelatex jlu_defense.tex
-xelatex jlu_defense.tex
-```
-
-编译吉林大学模板2：
-
-```bash
-cd jlu_v2
-xelatex jlu_v2_defense.tex
-bibtex jlu_v2_defense
-xelatex jlu_v2_defense.tex
-xelatex jlu_v2_defense.tex
-```
-
-编译吉林大学数学学院模板：
-
-```bash
-cd math
-xelatex math_defense.tex
-bibtex math_defense
-xelatex math_defense.tex
-xelatex math_defense.tex
-```
-
-三套模板都使用同一编译链：
-
-```bash
-xelatex <main>.tex
-bibtex <main>
-xelatex <main>.tex
-xelatex <main>.tex
-```
-
-其中 `<main>` 分别为 `jlu_defense`、`jlu_v2_defense` 或 `math_defense`。模板目录内保留 `.latexmkrc`，熟悉 `latexmk` 的用户也可以继续使用它自动执行同等编译流程。
-
-## Overleaf 使用
-
-只需要使用一个模板时，建议只打包对应目录：
-
-- 吉林大学模板1：打包 `jlu/`。
-- 吉林大学模板2：打包 `jlu_v2/`。
-- 吉林大学数学学院模板：打包 `math/`。
-
-上传后请确认主文件、编译器和参考文献文件都在同一模板目录内。中文乱码通常是编译器没有设置为 XeLaTeX。
 
 ## 字体与资源
 
@@ -163,7 +110,7 @@ xelatex <main>.tex
 
 **提示找不到图片、字体或 `references.bib`**
 
-请先进入模板目录再编译。例如编译吉林大学模板1时先执行 `cd jlu`。
+请先进入模板目录再编译。
 
 **Overleaf 编译失败**
 
